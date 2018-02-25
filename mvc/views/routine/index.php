@@ -208,7 +208,7 @@
                         echo '<td>'.$us_day.'</td>';
                         $flag = 1;
                     } 
-                    echo '<td>';
+                    echo '<td style="font-size:8px">';
                     echo '<div class="btn-group">';
                     echo "<span type=\"button\" class=\"btn btn-success\">"; 
                         echo $routine->start_time.'-'.$routine->end_time.'<br/>';

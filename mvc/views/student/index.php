@@ -48,19 +48,19 @@
 
 
 
-                        <div class="tab-content">
+                        <div  class="tab-content">
                             <div id="all" class="tab-pane active">
                                 <div id="hide-table">
                                     <table id="example1" class="table table-striped table-bordered table-hover dataTable no-footer">
-                                        <thead>
-                                            <tr>
-                                                <th class="col-sm-1"><?=$this->lang->line('slno')?></th>
-                                                <th class="col-sm-2"><?=$this->lang->line('student_photo')?></th>
-                                                <th class="col-sm-2"><?=$this->lang->line('student_name')?></th>
-                                                <th class="col-sm-2"><?=$this->lang->line('student_phone')?></th>
-                                                <th class="col-sm-2"><?=$this->lang->line('student_email')?></th>
+                                        <thead >
+                                            <tr >
+                                                <th id="fitcell" class="col-sm-1"><?=$this->lang->line('slno')?></th>
+                                                <th id="fitcell" class="col-sm-2"><?=$this->lang->line('student_photo')?></th>
+                                                <th id="fitcell" class="col-sm-2"><?=$this->lang->line('student_name')?></th>
+                                                <th id="fitcell" class="col-sm-2"><?=$this->lang->line('student_phone')?></th>
+                                                <th id="fitcell" class="col-sm-2"><?=$this->lang->line('student_email')?></th>
                                                 <?php if(permissionChecker('student_edit')) { ?>
-                                                <th class="col-sm-1"><?=$this->lang->line('student_status')?></th>
+                                                <th  id="fitcell" class="col-sm-1"><?=$this->lang->line('student_status')?></th>
                                                 <?php } ?>
                                                 <?php if(permissionChecker('student_edit') || permissionChecker('student_delete') || permissionChecker('student_view')) { ?>
                                                 <th class="col-sm-2"><?=$this->lang->line('action')?></th>
@@ -126,14 +126,17 @@
                             <?php foreach ($sections as $key => $section) { ?>
                                     <div id="tab<?=$section->classesID.$section->sectionID?>" class="tab-pane">
                                         <div id="hide-table">
-                                            <table class="table table-striped table-bordered table-hover dataTable no-footer">
+                                        <!--   
+                                        <table class="table table-striped table-bordered table-hover dataTable no-footer">
+                            -->    
+                                        <table id="example1" class="table table-striped table-bordered table-hover dataTable no-footer">
                                                 <thead>
                                                     <tr>
-                                                        <th class="col-sm-2"><?=$this->lang->line('slno')?></th>
-                                                        <th class="col-sm-2"><?=$this->lang->line('student_photo')?></th>
-                                                        <th class="col-sm-2"><?=$this->lang->line('student_name')?></th>
-                                                        <th class="col-sm-2"><?=$this->lang->line('student_phone')?></th>
-                                                        <th class="col-sm-2"><?=$this->lang->line('student_email')?></th>
+                                                        <th id="fitcell" class="col-sm-2"><?=$this->lang->line('slno')?></th>
+                                                        <th id="fitcell" class="col-sm-2"><?=$this->lang->line('student_photo')?></th>
+                                                        <th id="fitcell" class="col-sm-2"><?=$this->lang->line('student_name')?></th>
+                                                        <th id="fitcell" class="col-sm-2"><?=$this->lang->line('student_phone')?></th>
+                                                        <th id="fitcell" class="col-sm-2"><?=$this->lang->line('student_email')?></th>
                                                         <?php if(permissionChecker('student_edit') || permissionChecker('student_delete') || permissionChecker('student_view')) { ?>
                                                         <th class="col-sm-2"><?=$this->lang->line('action')?></th>
                                                         <?php } ?>
@@ -197,11 +200,11 @@
                                     <table id="example1" class="table table-striped table-bordered table-hover dataTable no-footer">
                                         <thead>
                                             <tr>
-                                                <th class="col-sm-2"><?=$this->lang->line('slno')?></th>
-                                                <th class="col-sm-2"><?=$this->lang->line('student_photo')?></th>
-                                                <th class="col-sm-2"><?=$this->lang->line('student_name')?></th>
-                                                <th class="col-sm-2"><?=$this->lang->line('student_roll')?></th>
-                                                <th class="col-sm-2"><?=$this->lang->line('student_email')?></th>
+                                                <th id="fitcell" class="col-sm-2"><?=$this->lang->line('slno')?></th>
+                                                <th id="fitcell" class="col-sm-2"><?=$this->lang->line('student_photo')?></th>
+                                                <th id="fitcell" class="col-sm-2"><?=$this->lang->line('student_name')?></th>
+                                                <th id="fitcell" class="col-sm-2"><?=$this->lang->line('student_roll')?></th>
+                                                <th id="fitcell" class="col-sm-2"><?=$this->lang->line('student_email')?></th>
                                                 <?php if(permissionChecker('student_edit') || permissionChecker('student_delete') || permissionChecker('student_view')) { ?>
                                                 <th class="col-sm-2"><?=$this->lang->line('action')?></th>
                                                 <?php } ?>
