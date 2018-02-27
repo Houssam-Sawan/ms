@@ -100,7 +100,7 @@
                             <?php foreach ($sections as $key => $section) { ?>
                                     <div id="<?=$section->sectionID?>" class="tab-pane">
                                         <div id="hide-table">
-                                            <table class="table table-striped table-bordered table-hover dataTable no-footer">
+                                        <table id="example1" class="table table-striped table-bordered table-hover dataTable no-footer">
                                                 <thead>
                                                     <tr>
                                                         <th class="col-sm-2"><?=$this->lang->line('slno')?></th>

@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <?php if(count($students)) { ?>
-                <table id="example1" class="table table-striped table-bordered table-hover dataTable no-footer">
+                    <table id="example1" class="table table-striped table-bordered table-hover dataTable no-footer">
                     <thead>
                         <tr>
                             <th class="col-sm-1">#</th>

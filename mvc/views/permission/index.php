@@ -46,7 +46,7 @@
                 <div class="col-sm-12">
                     <form action="<?=base_url('permission/save/'.$set)?>" class="form-horizontal" role="form" method="post" id="usertype">
                         <div id="hide-table">
-                            <table id="" class="table table-striped table-bordered table-hover dataTable no-footer">
+                            <table id="example1" class="table table-striped table-bordered table-hover dataTable no-footer">
                                 <thead>
                                     <tr>
                                         <th class="col-lg-1"><?=$this->lang->line('slno')?></th>
