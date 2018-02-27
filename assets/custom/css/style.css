@@ -1,3 +1,32 @@
+
+
+
+#table,
+#table tbody,
+#table tbody tr,
+#table tbody tr td
+{
+    
+    padding: 2px !important;
+    white-space:nowrap;
+    width: 50px !important;
+}
+
+#table tbody tr td div span
+{
+    font-size: 12px;
+    padding: 2px;
+    margin: auto;
+    width: 100%;
+}
+
+#table tbody tr td div
+{
+    margin: auto;
+    width: 100%;
+}
+
+
 @media only screen and (min-width: 800px){
 
     #example1, #example1 thead, #example1 thead tr th , #example1 thead tr{
@@ -21,3 +50,12 @@
    }
    
 }
+
+/*.table>thead>tr>th,
+
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>tbody>tr>td,
+.table>tfoot>tr>td 
+
+*/
