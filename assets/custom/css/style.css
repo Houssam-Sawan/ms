@@ -3,12 +3,12 @@
     white-space:nowrap;
     width: 1%;
 }
-/*
-.tab-content div div table thead tr th{
-    white-space:nowrap;
-    width:1%;
-}
 
+#example1, #example1 thead, #example1 thead tr th , #example1 thead tr{
+    white-space:nowrap;
+    width:0px !important;
+}
+/*
 #ignorethis{
     white-space:nowrap;
     width:auto;
