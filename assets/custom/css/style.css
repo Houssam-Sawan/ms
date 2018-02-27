@@ -13,5 +13,11 @@
         
         width:auto !important;
 
-}
+    }
 
+   /* #example1 tbody tr td */
+   #hide-table td{
+       padding-left: 70px;
+   }
+   
+}
