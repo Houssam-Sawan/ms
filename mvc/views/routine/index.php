@@ -9,7 +9,7 @@
         </ol>
     </div><!-- /.box-header -->
     <!-- form start -->
-
+    <p id="demo">dcsdcs</p>
     <div class="box-body">
         <div class="row">
 
@@ -416,8 +416,43 @@ function filter_time() {
     var end = $('#end_time').val();
     var id1 = 'st' + timeToSeconds(start);
     var id2 = 'end' + timeToSeconds(end);
-    var id = '#'+ id1 + id2;
-    $("td").css({'display':'table-cell'});
+    var id =  id1 + id2;
+    $("#demo").html(id);
+
+    table = document.getElementById("table");
+    tr = table.getElementsByTagName("tr");
+        if(filter != "ALL"){
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[culNum];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                   // if (td.innerHTML.indexOf(filter) > -1) {
+                       tr[i].style.display = "filtered";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }else{
+            for (i = 0; i < tr.length; i++) {
+                        tr[i].style.display = "";
+            }
+        }
+    /*var table = document.getElementById("table");// $("#table");
+    for(var row in table.rows)
+    {
+        for(var cell in row.cells)
+        {
+            if (cell.id == id)
+            {
+                $("td").css({'display':'table-cell'});
+            }else{
+                $("td").css({'display':'none'});
+            }
+        }
+    }
+    */
     //$('#t_start').html(id1);
     //$('#t_end').html(id2);
     //$(id).style("display:none;"); 
