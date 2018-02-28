@@ -9,9 +9,30 @@
         </ol>
     </div><!-- /.box-header -->
     <!-- form start -->
+
     <div class="box-body">
         <div class="row">
 
+<div class="col-sm-12">
+
+<p id="t_start" >this is start</p>
+<p id="t_end" >this is end</p>
+
+<?php 
+/*
+echo count($routines);
+if(count($routines) > 0) 
+{
+    $countss = 0;
+foreach ($times as $key => $routine) {
+    echo '<p>'.$routine->start_time. '</p>';
+    echo $countss++;
+    if($countss > 50){break;}
+}
+}
+*/
+?>
+</div>
             <div class="col-sm-12">
 
 
@@ -21,13 +42,14 @@
                 ?>
 
                     <?php if(permissionChecker('routine_add')) { ?>
-                        <h5 class="page-header">
+                        <h5 class="page-header" style="margin-bottom: 0px !important;" >
                             <a href="<?php echo base_url('routine/add') ?>">
                                 <i class="fa fa-plus"></i> 
                                 <?=$this->lang->line('add_title')?>
                             </a>
                         </h5>
                     <?php } ?>
+
                     <?php if(count($routines) > 0 ) { ?>
                         <div id="hide-table-2">
                             <table id="table" class="table table-bordered">
@@ -47,7 +69,8 @@
                                                         echo '<td>'.$us_day.'</td>';
                                                         $flag = 1;
                                                     } 
-                                                    echo '<td>';
+                                                    echo '<td id=' . $routine->start_time .'>';
+                                                    echo 'test';
                                                     echo '<div class="btn-group">';
                                                     echo "<span type=\"button\" class=\"btn btn-success\">"; 
                                                         echo $routine->start_time.'-'.$routine->end_time.'<br/>';
@@ -123,7 +146,38 @@
                             ?>
                         </div>
                     </h5>
+<!-- Form start -->
+<div class="box-body" style="padding: 3px 15px;">
+    <div class="row">
+        <div class="col-sm-6">
+            <form class="form-vertical" role="form" method="post">
+                <label for="start_time" class="col-sm-2 control-label">
 
+                <?=$this->lang->line("routine_start_time")?>
+
+                </label>
+
+                <div class="col-sm-4">
+
+                <input onselect="filter_times()" type="text" class="form-control" id="start_time" name="start_time" value="<?=set_value('start_time')?>" >
+
+                </div>
+
+                <label for="end_time" class="col-sm-2 control-label">
+
+                <?=$this->lang->line("routine_end_time")?>
+
+                </label>
+
+                <div class="col-sm-4">
+
+                <input onchange="filter_times()" type="text" class="form-control" id="end_time" name="end_time" value="<?=set_value('end_time')?>" >
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
                     <?php if(count($routines) > 0 ) { ?>
                         <div class="nav-tabs-custom">
                             <ul class="nav nav-tabs">
@@ -154,7 +208,12 @@
                     echo '<td>'.$us_day.'</td>';
                     $flag = 1;
                 } 
-                echo '<td>';
+                $this->load->helper('url');
+                $start_id = url_title($routine->start_time, 'dash', TRUE);
+                $start_id =strtotime($routine->start_time);
+                echo '<td id=st' . $start_id .'>';
+                echo $routine->start_time;
+                echo strtotime($routine->start_time);//, hh:MM meridian);
                 echo '<div class="btn-group">';
                 echo "<span type=\"button\" class=\"btn btn-success\">"; 
                     echo $routine->start_time.' - '.$routine->end_time.' | ';
@@ -306,4 +365,19 @@
             axis:"x" // horizontal scrollbar
         });
     } 
+</script>
+<!-- Filter time script -->
+<script type="text/javascript">
+
+function filter_times() {
+    var start = $('#start_time').val();
+    var end = $('#end_time').val();
+    $('#t_start').html(start);
+    $('#t_end').html(end);
+}
+
+$('#start_time').timepicker();
+
+$('#end_time').timepicker();
+
 </script>
