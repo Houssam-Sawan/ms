@@ -128,7 +128,7 @@ foreach ($times as $key => $routine) {
 
 
                 <?php } else { ?>
-                    <h5 class="page-header">
+                    <h5 class="page-header" style="margin-bottom: 0px !important;" >
                         <?php if(permissionChecker('routine_add')) { ?>
                             <a href="<?php echo base_url('routine/add') ?>">
                                 <i class="fa fa-plus"></i> 
@@ -208,12 +208,21 @@ foreach ($times as $key => $routine) {
                     echo '<td>'.$us_day.'</td>';
                     $flag = 1;
                 } 
+                /*
                 $this->load->helper('url');
-                $start_id = url_title($routine->start_time, 'dash', TRUE);
+                $start_id =  url_title($routine->start_time, 'dash', TRUE);
                 $start_id =strtotime($routine->start_time);
                 echo '<td id=st' . $start_id .'>';
                 echo $routine->start_time;
                 echo strtotime($routine->start_time);//, hh:MM meridian);
+                */
+                $str_time = $routine->start_time;
+                $start_sec = $this->routine_m->timetosecond($str_time);
+
+                $fullID = 'st'. $start_sec;
+                echo '<td id=' . $fullID .'>';
+                echo $str_time .' '. $fullID;
+
                 echo '<div class="btn-group">';
                 echo "<span type=\"button\" class=\"btn btn-success\">"; 
                     echo $routine->start_time.' - '.$routine->end_time.' | ';
@@ -369,8 +378,14 @@ foreach ($times as $key => $routine) {
 <!-- Filter time script -->
 <script type="text/javascript">
 
+function timeToSeconds(time) {
+    time = time.split(/:/);
+    return time[0] * 3600 + time[1] * 60 + time[2];
+}
+
 function filter_times() {
     var start = $('#start_time').val();
+   // var id = 'st' + Date.parseExact("12:05 PM", "hh:mm tt");
     var end = $('#end_time').val();
     $('#t_start').html(start);
     $('#t_end').html(end);

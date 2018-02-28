@@ -86,6 +86,8 @@ class Routine extends Admin_Controller {
 
 				'assets/timepicker/timepicker.js'
 
+				//'assets/jquery/jquery-3.3.1.min.js'
+
 			)
 
 		);

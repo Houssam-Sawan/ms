@@ -163,6 +163,24 @@ class Routine_m extends MY_Model {
 
 	}
 
+	//Helper function to convert time to seconds
+
+	public function timetosecond($str_time = "00:00 AM")
+	{
+		//$str_time = "3:50 PM";
+
+		sscanf($str_time, "%d:%d %s", $hours, $minutes, $mm);
+
+		$hours = (($mm == "AM")? $hours :$hours+=12);
+
+		$time_seconds =  ($hours * 3600 + $minutes * 60 ) ;
+
+		//echo $hours;
+		//echo $time_seconds;
+
+		return $time_seconds;
+	}
+
 }
 
 
