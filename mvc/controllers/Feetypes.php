@@ -72,6 +72,16 @@ class Feetypes extends Admin_Controller {
 
 				array(
 
+					'field' => 'feeamount', 
+
+					'label' => 'Amount', 
+
+					'rules' => 'trim|required|xss_clean|max_length[60]|callback_unique_feetypes'
+
+				),
+
+				array(
+
 					'field' => 'note', 
 
 					'label' => $this->lang->line("feetype_note"), 
