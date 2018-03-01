@@ -2,14 +2,14 @@
     <div class="box-header">
         <h3 class="box-title"><i class="fa icon-routine"></i> <?=$this->lang->line('panel_title')?></h3>
 
-       
+
         <ol class="breadcrumb">
             <li><a href="<?=base_url("dashboard/index")?>"><i class="fa fa-laptop"></i> <?=$this->lang->line('menu_dashboard')?></a></li>
             <li class="active"><?=$this->lang->line('menu_routine')?></li>
         </ol>
     </div><!-- /.box-header -->
     <!-- form start -->
-    <p id="demo">dcsdcs</p>
+
     <div class="box-body">
         <div class="row">
 
@@ -18,33 +18,33 @@
 <p id="t_start" >this is start</p>
 <p id="t_end" >this is end</p>
 -->
-<?php 
+<?php
 /*
 echo count($routines);
-if(count($routines) > 0) 
+if(count($routines) > 0)
 {
-    $countss = 0;
+$countss = 0;
 foreach ($times as $key => $routine) {
-    echo '<p>'.$routine->start_time. '</p>';
-    echo $countss++;
-    if($countss > 50){break;}
+echo '<p>'.$routine->start_time. '</p>';
+echo $countss++;
+if($countss > 50){break;}
 }
 }
-*/
+ */
 ?>
 </div>
             <div class="col-sm-12">
 
 
-                <?php 
-                    $usertypeID = $this->session->userdata("usertypeID");
+                <?php
+$usertypeID = $this->session->userdata("usertypeID");
 if ($usertypeID == 3) {
-                ?>
+    ?>
 
                     <?php if (permissionChecker('routine_add')) {?>
                         <h5 class="page-header" style="margin-bottom: 0px !important;" >
                             <a href="<?php echo base_url('routine/add') ?>">
-                                <i class="fa fa-plus"></i> 
+                                <i class="fa fa-plus"></i>
                                 <?=$this->lang->line('add_title')?>
                             </a>
                         </h5>
@@ -55,51 +55,51 @@ if ($usertypeID == 3) {
                             <table id="table" class="table table-bordered">
                                 <tbody>
                                     <?php
-                                        $us_days = array('MONDAY' => $this->lang->line('monday'), 'TUESDAY' => $this->lang->line('tuesday'), 'WEDNESDAY' => $this->lang->line('wednesday'), 'THURSDAY' => $this->lang->line('thursday'), 'FRIDAY' => $this->lang->line('friday'), 'SATURDAY' => $this->lang->line('saturday'), 'SUNDAY' => $this->lang->line('sunday'));
-                                        $flag = 0;
+$us_days = array('MONDAY' => $this->lang->line('monday'), 'TUESDAY' => $this->lang->line('tuesday'), 'WEDNESDAY' => $this->lang->line('wednesday'), 'THURSDAY' => $this->lang->line('thursday'), 'FRIDAY' => $this->lang->line('friday'), 'SATURDAY' => $this->lang->line('saturday'), 'SUNDAY' => $this->lang->line('sunday'));
+        $flag = 0;
         $map = function ($r) {return $r->day;};
-                                        $count = array_count_values(array_map($map, $routines));
-                                        $max = max($count);
-                                        foreach ($us_days as $key => $us_day) {
-                                            $row_count = 0;
-                                            foreach ($routines as $routine) {
+        $count = array_count_values(array_map($map, $routines));
+        $max = max($count);
+        foreach ($us_days as $key => $us_day) {
+            $row_count = 0;
+            foreach ($routines as $routine) {
                 if ($routine->day == $key) {
                     if ($flag == 0) {
-                                                        echo '<tr>';
+                        echo '<tr>';
                         echo '<td>' . $us_day . '</td>';
-                                                        $flag = 1;
-                                                    } 
+                        $flag = 1;
+                    }
                     echo '<td id=' . $routine->start_time . '>';
-                                                    echo 'test';
-                                                    echo '<div class="btn-group">';
-                                                    echo "<span type=\"button\" class=\"btn btn-success\">"; 
+                    echo 'test';
+                    echo '<div class="btn-group">';
+                    echo "<span type=\"button\" class=\"btn btn-success\">";
                     echo $routine->start_time . '-' . $routine->end_time . '<br/>';
                     echo $routine->subject . ' | ';
                     echo $routine->name . '<br/>';
                     if (permissionChecker('routine_edit')) {
                         echo btn_edit('routine/edit/' . $routine->routineID . '/' . $routine->classesID, $this->lang->line('edit'));
-                                                        }
+                    }
                     if (permissionChecker('routine_delete')) {
                         echo btn_delete('routine/delete/' . $routine->routineID . '/' . $routine->classesID, $this->lang->line('delete'));
-                                                        }
+                    }
 
-                                                    echo '</span>';
-                                                    echo '</div>';
-                                                    echo '</td>'; 
-                                                    $row_count++;
-                                                } 
-                                            }
+                    echo '</span>';
+                    echo '</div>';
+                    echo '</td>';
+                    $row_count++;
+                }
+            }
 
             if ($flag == 1) {
                 while ($row_count < $max) {
-                                                  // echo "<td></td>";
-                                                  $row_count++;
-                                                }
-                                                echo '</tr>';
-                                                $flag = 0;
-                                            }
-                                        }
-                                    ?>
+                    // echo "<td></td>";
+                    $row_count++;
+                }
+                echo '</tr>';
+                $flag = 0;
+            }
+        }
+        ?>
                                 </tbody>
                             </table>
                         </div>
@@ -108,16 +108,16 @@ if ($usertypeID == 3) {
                             <table id="table" class="table table-striped ">
                                 <tbody>
 
-          
+
                                     <?php
-                                        $us_days = array('MONDAY' => $this->lang->line('monday'), 'TUESDAY' => $this->lang->line('tuesday'), 'WEDNESDAY' => $this->lang->line('wednesday'), 'THURSDAY' => $this->lang->line('thursday'), 'FRIDAY' => $this->lang->line('friday'), 'SATURDAY' => $this->lang->line('saturday'), 'SUNDAY' => $this->lang->line('sunday'));
-                                        $flag = 0;
-                                        foreach ($us_days as $key => $us_day) {
-                                            echo '<tr>';
+$us_days = array('MONDAY' => $this->lang->line('monday'), 'TUESDAY' => $this->lang->line('tuesday'), 'WEDNESDAY' => $this->lang->line('wednesday'), 'THURSDAY' => $this->lang->line('thursday'), 'FRIDAY' => $this->lang->line('friday'), 'SATURDAY' => $this->lang->line('saturday'), 'SUNDAY' => $this->lang->line('sunday'));
+        $flag = 0;
+        foreach ($us_days as $key => $us_day) {
+            echo '<tr>';
             echo '<td>' . $us_day . '</td>';
-                                            echo '</tr>';
-                                        }  
-                                    ?>
+            echo '</tr>';
+        }
+        ?>
                                 </tbody>
                             </table>
                         </div>
@@ -131,19 +131,19 @@ if ($usertypeID == 3) {
                     <h5 class="page-header" style="margin-bottom: 0px !important;" >
                         <?php if (permissionChecker('routine_add')) {?>
                             <a href="<?php echo base_url('routine/add') ?>">
-                                <i class="fa fa-plus"></i> 
+                                <i class="fa fa-plus"></i>
                                 <?=$this->lang->line('add_title')?>
                             </a>
                         <?php }?>
 
                         <div class="col-lg-2 col-sm-2 col-md-2 col-xs-12 pull-right drop-marg">
                             <?php
-                                $array = array("0" => $this->lang->line("routine_select_classes"));
-                                foreach ($classes as $classa) {
-                                    $array[$classa->classesID] = $classa->classes;
-                                }
-                                echo form_dropdown("classesID", $array, set_value("classesID", $set), "id='classesID' class='form-control select2'");
-                            ?>
+$array = array("0" => $this->lang->line("routine_select_classes"));
+    foreach ($classes as $classa) {
+        $array[$classa->classesID] = $classa->classes;
+    }
+    echo form_dropdown("classesID", $array, set_value("classesID", $set), "id='classesID' class='form-control select2'");
+    ?>
                         </div>
                     </h5>
 <!-- Form start -->
@@ -201,39 +201,39 @@ if ($usertypeID == 3) {
                                         <table id="table" class="table table-bordered ">
                                             <tbody>
 <?php
-    $us_days = array('MONDAY' => $this->lang->line('monday'), 'TUESDAY' => $this->lang->line('tuesday'), 'WEDNESDAY' => $this->lang->line('wednesday'), 'THURSDAY' => $this->lang->line('thursday'), 'FRIDAY' => $this->lang->line('friday'), 'SATURDAY' => $this->lang->line('saturday'), 'SUNDAY' => $this->lang->line('sunday'));
-    $flag = 0;
+$us_days = array('MONDAY' => $this->lang->line('monday'), 'TUESDAY' => $this->lang->line('tuesday'), 'WEDNESDAY' => $this->lang->line('wednesday'), 'THURSDAY' => $this->lang->line('thursday'), 'FRIDAY' => $this->lang->line('friday'), 'SATURDAY' => $this->lang->line('saturday'), 'SUNDAY' => $this->lang->line('sunday'));
+        $flag = 0;
         $map = function ($r) {return $r->day;};
-    $count = array_count_values(array_map($map, $routines));
-    $max = max($count);
-    foreach ($us_days as $key => $us_day) {
-        $row_count = 0;
-        foreach ($routines as $routine) {
+        $count = array_count_values(array_map($map, $routines));
+        $max = max($count);
+        foreach ($us_days as $key => $us_day) {
+            $row_count = 0;
+            foreach ($routines as $routine) {
                 if ($routine->day == $key) {
                     if ($flag == 0) {
-                    echo '<tr>';
+                        echo '<tr>';
                         echo '<td>' . $us_day . '</td>';
-                    $flag = 1;
-                } 
-                /*
-                $this->load->helper('url');
-                $start_id =  url_title($routine->start_time, 'dash', TRUE);
-                $start_id =strtotime($routine->start_time);
-                echo '<td id=st' . $start_id .'>';
-                echo $routine->start_time;
-                echo strtotime($routine->start_time);//, hh:MM meridian);
-                */
-                $str_time = $routine->start_time;
+                        $flag = 1;
+                    }
+                    /*
+                    $this->load->helper('url');
+                    $start_id =  url_title($routine->start_time, 'dash', TRUE);
+                    $start_id =strtotime($routine->start_time);
+                    echo '<td id=st' . $start_id .'>';
+                    echo $routine->start_time;
+                    echo strtotime($routine->start_time);//, hh:MM meridian);
+                     */
+                    $str_time = $routine->start_time;
                     $end_time = $routine->end_time;
-                $start_sec = $this->routine_m->timetosecond($str_time);
+                    $start_sec = $this->routine_m->timetosecond($str_time);
                     $end_sec = $this->routine_m->timetosecond($end_time);
 
                     $fullID = 'st' . $start_sec . 'end' . $end_sec;
                     echo '<td id=' . $fullID . '>';
                     //echo $str_time . ' ' . $fullID;
 
-                echo '<div class="btn-group">';
-                echo "<span type=\"button\" class=\"btn btn-success\">"; 
+                    echo '<div class="btn-group">';
+                    echo "<span type=\"button\" class=\"btn btn-success\">";
                     echo $routine->start_time . ' - ' . $routine->end_time . ' | ';
                     echo $routine->section . '<br/>';
                     echo $routine->subject . ' | ';
@@ -241,23 +241,23 @@ if ($usertypeID == 3) {
                     echo btn_edit('routine/edit/' . $routine->routineID . '/' . $set, $this->lang->line('edit'));
                     echo ' ';
                     echo btn_delete('routine/delete/' . $routine->routineID . '/' . $set, $this->lang->line('delete'));
-                echo '</span>';
-                echo '</div>';
-                echo '</td>'; 
-                $row_count++;
-            } 
-        }
+                    echo '</span>';
+                    echo '</div>';
+                    echo '</td>';
+                    $row_count++;
+                }
+            }
 
             if ($flag == 1) {
                 while ($row_count < $max) {
-                // echo "<td></td>";
-                $row_count++;
+                    // echo "<td></td>";
+                    $row_count++;
+                }
+                echo '</tr>';
+                $flag = 0;
             }
-            echo '</tr>';
-            $flag = 0;
         }
-    }
-?>
+        ?>
                                             </tbody>
                                         </table>
                                     </div>
@@ -271,23 +271,23 @@ if ($usertypeID == 3) {
 <?php
 if (count($allsection[$section->section])) {
 
-        $us_days = array('MONDAY' => $this->lang->line('monday'), 'TUESDAY' => $this->lang->line('tuesday'), 'WEDNESDAY' => $this->lang->line('wednesday'), 'THURSDAY' => $this->lang->line('thursday'), 'FRIDAY' => $this->lang->line('friday'), 'SATURDAY' => $this->lang->line('saturday'), 'SUNDAY' => $this->lang->line('sunday'));
-        $flag = 0;
+            $us_days = array('MONDAY' => $this->lang->line('monday'), 'TUESDAY' => $this->lang->line('tuesday'), 'WEDNESDAY' => $this->lang->line('wednesday'), 'THURSDAY' => $this->lang->line('thursday'), 'FRIDAY' => $this->lang->line('friday'), 'SATURDAY' => $this->lang->line('saturday'), 'SUNDAY' => $this->lang->line('sunday'));
+            $flag = 0;
             $map = function ($r) {return $r->day;};
-        $count = array_count_values(array_map($map, $routines));
-        $max = max($count);
-        foreach ($us_days as $key => $us_day) {
-            $row_count = 0;
+            $count = array_count_values(array_map($map, $routines));
+            $max = max($count);
+            foreach ($us_days as $key => $us_day) {
+                $row_count = 0;
                 foreach ($allsection[$section->section] as $routine) {
                     if ($routine->day == $key) {
                         if ($flag == 0) {
-                        echo '<tr>';
+                            echo '<tr>';
                             echo '<td>' . $us_day . '</td>';
-                        $flag = 1;
-                    } 
-                    echo '<td style="font-size:8px">';
-                    echo '<div class="btn-group">';
-                    echo "<span type=\"button\" class=\"btn btn-success\">"; 
+                            $flag = 1;
+                        }
+                        echo '<td style="font-size:8px">';
+                        echo '<div class="btn-group">';
+                        echo "<span type=\"button\" class=\"btn btn-success\">";
                         echo $routine->start_time . '-' . $routine->end_time . '<br/>';
                         echo $routine->subject . ' | ';
                         echo $routine->name . '<br/>';
@@ -297,24 +297,24 @@ if (count($allsection[$section->section])) {
                         if (permissionChecker('routine_delete')) {
                             echo btn_delete('routine/delete/' . $routine->routineID . '/' . $set, $this->lang->line('delete'));
                         }
-                    echo '</span>';
-                    echo '</div>';
-                    echo '</td>'; 
-                    $row_count++;
-                } 
-            }
- 
+                        echo '</span>';
+                        echo '</div>';
+                        echo '</td>';
+                        $row_count++;
+                    }
+                }
+
                 if ($flag == 1) {
                     while ($row_count < $max) {
-                    // echo "<td></td>";
-                    $row_count++;
+                        // echo "<td></td>";
+                        $row_count++;
+                    }
+                    echo '</tr>';
+                    $flag = 0;
                 }
-                echo '</tr>';
-                $flag = 0;
             }
         }
-    }
-?>
+            ?>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -335,14 +335,14 @@ if (count($allsection[$section->section])) {
                                         <table id="table" class="table table-striped ">
                                             <tbody>
                                                 <?php
-                                                    $us_days = array('MONDAY' => $this->lang->line('monday'), 'TUESDAY' => $this->lang->line('tuesday'), 'WEDNESDAY' => $this->lang->line('wednesday'), 'THURSDAY' => $this->lang->line('thursday'), 'FRIDAY' => $this->lang->line('friday'), 'SATURDAY' => $this->lang->line('saturday'), 'SUNDAY' => $this->lang->line('sunday'));
-                                                    $flag = 0;
-                                                    foreach ($us_days as $key => $us_day) {
-                                                        echo '<tr>';
+$us_days = array('MONDAY' => $this->lang->line('monday'), 'TUESDAY' => $this->lang->line('tuesday'), 'WEDNESDAY' => $this->lang->line('wednesday'), 'THURSDAY' => $this->lang->line('thursday'), 'FRIDAY' => $this->lang->line('friday'), 'SATURDAY' => $this->lang->line('saturday'), 'SUNDAY' => $this->lang->line('sunday'));
+        $flag = 0;
+        foreach ($us_days as $key => $us_day) {
+            echo '<tr>';
             echo '<td>' . $us_day . '</td>';
-                                                        echo '</tr>';
-                                                    }  
-                                                ?>
+            echo '</tr>';
+        }
+        ?>
                                             </tbody>
                                         </table>
                                     </div>
@@ -382,7 +382,7 @@ if (count($allsection[$section->section])) {
         $('.tab-pane').mCustomScrollbar({
             axis:"x" // horizontal scrollbar
         });
-    } 
+    }
 </script>
 <!-- Filter time script -->
 <script type="text/javascript">
@@ -415,10 +415,10 @@ function filter_time() {
     var start = $('#start_time').val();
     var end = $('#end_time').val();
     var st_sec = timeToSeconds(start);
-    var end_sec = 'end' + timeToSeconds(end);
+    var end_sec = timeToSeconds(end);
     var id =  "start: " + st_sec + " End: " + end_sec;
     var F = idstrtosec("");
-    $("#demo").html(id+typeof st_sec );//+ typeof start +"to dyt"+typeof F +" F0 "+ typeof F[0] );
+    //$("#demo").html(id+typeof st_sec );//+ typeof start +"to dyt"+typeof F +" F0 "+ typeof F[0] );
 
     table = document.getElementById("table");
     tr = table.getElementsByTagName("tr");
@@ -431,7 +431,7 @@ function filter_time() {
                     var timesF = idstrtosec(currID.id)
                     //if(j == 1){ alert(timesF[0]);  }
                    // if(j == 1){ alert(st_sec); break; }
-                    if(timesF[0] >= st_sec){
+                    if(timesF[0] >= st_sec && timesF[1] <= end_sec){
                         currID.style.display = "table-cell";
                     } else {
                         currID.style.display = "none";
@@ -442,9 +442,11 @@ function filter_time() {
 
 function idstrtosec(idStr)
 {
-    var 
+    var startStr =  parseInt(idStr.substring(2, idStr.indexOf("end")));
+    var endStr = parseInt(idStr.substring(idStr.indexOf("end")+3));
+   // $("#demo").html("start: "+ startStr + " End: "+endStr);
     //st28800end39600
-    return [28800, 39600];
+    return [startStr, endStr];
 }
 
 function clear_filters()
