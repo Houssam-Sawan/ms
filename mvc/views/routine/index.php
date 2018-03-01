@@ -12,27 +12,11 @@
 
     <div class="box-body">
         <div class="row">
-
-<div class="col-sm-12">
 <!--
-<p id="t_start" >this is start</p>
-<p id="t_end" >this is end</p>
--->
-<?php
-/*
-echo count($routines);
-if(count($routines) > 0)
-{
-$countss = 0;
-foreach ($times as $key => $routine) {
-echo '<p>'.$routine->start_time. '</p>';
-echo $countss++;
-if($countss > 50){break;}
-}
-}
- */
-?>
+<div class="col-sm-12">
+  <p id="demo">this is demo</p>
 </div>
+-->
             <div class="col-sm-12">
 
 
@@ -69,8 +53,13 @@ $us_days = array('MONDAY' => $this->lang->line('monday'), 'TUESDAY' => $this->la
                         echo '<td>' . $us_day . '</td>';
                         $flag = 1;
                     }
-                    echo '<td id=' . $routine->start_time . '>';
-                    echo 'test';
+                    $str_time = $routine->start_time;
+                    $end_time = $routine->end_time;
+                    $start_sec = $this->routine_m->timetosecond($str_time);
+                    $end_sec = $this->routine_m->timetosecond($end_time);
+
+                    $fullID = 'st' . $start_sec . 'end' . $end_sec;
+                    echo '<td id=' . $fullID . '>';
                     echo '<div class="btn-group">';
                     echo "<span type=\"button\" class=\"btn btn-success\">";
                     echo $routine->start_time . '-' . $routine->end_time . '<br/>';
@@ -215,14 +204,7 @@ $us_days = array('MONDAY' => $this->lang->line('monday'), 'TUESDAY' => $this->la
                         echo '<td>' . $us_day . '</td>';
                         $flag = 1;
                     }
-                    /*
-                    $this->load->helper('url');
-                    $start_id =  url_title($routine->start_time, 'dash', TRUE);
-                    $start_id =strtotime($routine->start_time);
-                    echo '<td id=st' . $start_id .'>';
-                    echo $routine->start_time;
-                    echo strtotime($routine->start_time);//, hh:MM meridian);
-                     */
+
                     $str_time = $routine->start_time;
                     $end_time = $routine->end_time;
                     $start_sec = $this->routine_m->timetosecond($str_time);
@@ -230,7 +212,6 @@ $us_days = array('MONDAY' => $this->lang->line('monday'), 'TUESDAY' => $this->la
 
                     $fullID = 'st' . $start_sec . 'end' . $end_sec;
                     echo '<td id=' . $fullID . '>';
-                    //echo $str_time . ' ' . $fullID;
 
                     echo '<div class="btn-group">';
                     echo "<span type=\"button\" class=\"btn btn-success\">";
@@ -285,7 +266,13 @@ if (count($allsection[$section->section])) {
                             echo '<td>' . $us_day . '</td>';
                             $flag = 1;
                         }
-                        echo '<td style="font-size:8px">';
+                        $str_time = $routine->start_time;
+                        $end_time = $routine->end_time;
+                        $start_sec = $this->routine_m->timetosecond($str_time);
+                        $end_sec = $this->routine_m->timetosecond($end_time);
+
+                        $fullID = 'st' . $start_sec . 'end' . $end_sec;
+                        echo '<td id=' . $fullID . '>';
                         echo '<div class="btn-group">';
                         echo "<span type=\"button\" class=\"btn btn-success\">";
                         echo $routine->start_time . '-' . $routine->end_time . '<br/>';
@@ -387,76 +374,74 @@ $us_days = array('MONDAY' => $this->lang->line('monday'), 'TUESDAY' => $this->la
 <!-- Filter time script -->
 <script type="text/javascript">
 
-function timeToSeconds(str) {
-    var res = str.split(/[ :]/g);
-    var hour = parseInt(res[0]);
-    var min = parseInt(res[1]);
-    var med = res[2];
-     hour = (med == "AM")? hour : (hour + 12);
+    function timeToSeconds(str) {
+        var res = str.split(/[ :]/g);
+        var hour = parseInt(res[0]);
+        var min = parseInt(res[1]);
+        var med = res[2];
+        hour = (med == "AM")? hour : (hour + 12);
 
-   return hour * 3600 + min * 60;
-}
-/*
-function filter_time_start() {
+    return hour * 3600 + min * 60;
+    }
 
-    var start = $('#start_time').val();
-    var id = 'st' + timeToSeconds(start);
-    $('#t_start').html(start + ' ' + id);
+    function filter_time() {
+        var start = $('#start_time').val();
+        var end = $('#end_time').val();
+        var st_sec = timeToSeconds(start);
+        var end_sec = timeToSeconds(end);
+        var id =  "start: " + st_sec + " End: " + end_sec;
+        var F = idstrtosec("");
+        //$("#demo").html(id+typeof st_sec );//+ typeof start +"to dyt"+typeof F +" F0 "+ typeof F[0] );
 
-}
-
-function filter_time_end() {
-    var end = $('#end_time').val();
-    var id = 'st' + timeToSeconds(end);
-    $('#t_end').html(end + ' ' + id);
-}
-*/
-function filter_time() {
-    var start = $('#start_time').val();
-    var end = $('#end_time').val();
-    var st_sec = timeToSeconds(start);
-    var end_sec = timeToSeconds(end);
-    var id =  "start: " + st_sec + " End: " + end_sec;
-    var F = idstrtosec("");
-    //$("#demo").html(id+typeof st_sec );//+ typeof start +"to dyt"+typeof F +" F0 "+ typeof F[0] );
-
-    table = document.getElementById("table");
-    tr = table.getElementsByTagName("tr");
-            // Loop through all table rows, and hide those who don't match the search query
-            for (var i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td");
-                for (var j = 1; j < td.length; j++) {
-                    var currID = td[j];
-                    //if (currTd.id == id) {
-                    var timesF = idstrtosec(currID.id)
-                    //if(j == 1){ alert(timesF[0]);  }
-                   // if(j == 1){ alert(st_sec); break; }
-                    if(timesF[0] >= st_sec && timesF[1] <= end_sec){
-                        currID.style.display = "table-cell";
-                    } else {
-                        currID.style.display = "none";
+        //table = document.getElementById("table");
+        //tables = document.getElementsByTagName("table");
+        tables = document.getElementsByClassName("table");
+       // $("#demo").html("1:" + tables.length );
+        for(var k = 0; k < tables.length; k++)
+        {
+          table = tables[k];
+            tr = table.getElementsByTagName("tr");
+                    // Loop through all table rows, and hide those who don't match the search query
+                    for (var i = 0; i < tr.length; i++) {
+                        td = tr[i].getElementsByTagName("td");
+                        for (var j = 1; j < td.length; j++) {
+                            var currID = td[j];
+                            //if (currTd.id == id) {
+                            var timesF = idstrtosec(currID.id)
+                            //if(j == 1){ alert(timesF[0]);  }
+                        // if(j == 1){ alert(st_sec); break; }
+                            if(timesF[0] >= st_sec && timesF[1] <= end_sec){
+                                currID.style.display = "table-cell";
+                            } else {
+                                currID.style.display = "none";
+                            }
+                        }
                     }
-                }
-            }
-}
+        }
 
-function idstrtosec(idStr)
-{
-    var startStr =  parseInt(idStr.substring(2, idStr.indexOf("end")));
-    var endStr = parseInt(idStr.substring(idStr.indexOf("end")+3));
-   // $("#demo").html("start: "+ startStr + " End: "+endStr);
-    //st28800end39600
-    return [startStr, endStr];
-}
+    }
 
-function clear_filters()
-{
-   /* $("td").css('display':'inline-block');*/
-  $("td").css({'display':'table-cell'});
-}
+    function idstrtosec(idStr)
+    {
+        var startStr =  parseInt(idStr.substring(2, idStr.indexOf("end")));
+        var endStr = parseInt(idStr.substring(idStr.indexOf("end")+3));
+    // $("#demo").html("start: "+ startStr + " End: "+endStr);
+        //st28800end39600
+        return [startStr, endStr];
+    }
 
-$('#start_time').timepicker();
+    function clear_filters()
+    {
+        /* $("td").css('display':'inline-block');*/
+        $("td").css({'display':'table-cell'});
+    }
 
-$('#end_time').timepicker();
+    $('#start_time').timepicker();
 
+    $('#end_time').timepicker();
+
+    /*
+ tables1 = document.getElementsByTagName("table");
+ $("#demo").html("1:" + tables1.length );
+ */
 </script>
