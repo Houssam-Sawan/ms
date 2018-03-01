@@ -278,8 +278,11 @@ class Student extends Admin_Controller {
 		$this->data['classes'] = $this->student_m->get_classes();
 		$this->data['sections'] = $this->section_m->get_section();
 		$this->data['parents'] = $this->parents_m->get_parents();
+		$this->data['maxRoll'] = 1;
 
 		$classesID = $this->input->post("classesID");
+		//$roll = $this->input->post("roll");
+		
 
 		if($classesID != 0) {
 			$this->data['sections'] = $this->section_m->get_order_by_section(array("classesID" =>$classesID));
@@ -287,6 +290,17 @@ class Student extends Admin_Controller {
 			$this->data['sections'] = "empty";
 		}
 		$this->data['sectionID'] = $this->input->post("sectionID");
+
+
+		if($sectionID != 0)
+		{
+			$rolls = $this->student_m->get_max_roll("", $classesID, $sectionID);
+			$this->data['maxRoll'] =  (int)($rolls->maxroll) + 1;
+		}else{
+			$this->data['maxRoll'] = 1;
+		}
+
+		//$this->data['maxRoll'] = $this->input->post("roll");
 
 		if($_POST) {
 			$rules = $this->rules();
@@ -1021,6 +1035,25 @@ class Student extends Admin_Controller {
 				echo "<option value=\"$value->sectionID\">",$value->section,"</option>";
 			}
 		}
+	}
+
+	function updateroll()
+	{
+		$dat = 565;
+		/*
+		$info = $this->input->post('inf');
+		$info2 = $this->input->post('inf2');*/
+		$cID = $this->input->post('c');
+		$sID = $this->input->post('s');
+		if((int)$cID  && (int)$sID ){
+			$rollss = $this->student_m->get_max_roll("", $cID, $sID); //$cID, $sID);
+			//$this->data['maxRoll'] =  (int)($rollss->maxroll) + 1;
+			$dat = (int)($rollss->maxroll) + 1;
+			//echo $dat;
+		}
+
+		echo $dat;
+
 	}
 
 	public function unique_capacity() {
