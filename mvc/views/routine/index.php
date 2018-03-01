@@ -414,49 +414,39 @@ function filter_time_end() {
 function filter_time() {
     var start = $('#start_time').val();
     var end = $('#end_time').val();
-    var id1 = 'st' + timeToSeconds(start);
-    var id2 = 'end' + timeToSeconds(end);
-    var id =  id1 + id2;
-    $("#demo").html(id);
+    var st_sec = timeToSeconds(start);
+    var end_sec = 'end' + timeToSeconds(end);
+    var id =  "start: " + st_sec + " End: " + end_sec;
+    var F = idstrtosec("");
+    $("#demo").html(id+typeof st_sec );//+ typeof start +"to dyt"+typeof F +" F0 "+ typeof F[0] );
 
     table = document.getElementById("table");
     tr = table.getElementsByTagName("tr");
-        if(filter != "ALL"){
             // Loop through all table rows, and hide those who don't match the search query
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[culNum];
-                if (td) {
-                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                   // if (td.innerHTML.indexOf(filter) > -1) {
-                       tr[i].style.display = "filtered";
+            for (var i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td");
+                for (var j = 1; j < td.length; j++) {
+                    var currID = td[j];
+                    //if (currTd.id == id) {
+                    var timesF = idstrtosec(currID.id)
+                    //if(j == 1){ alert(timesF[0]);  }
+                   // if(j == 1){ alert(st_sec); break; }
+                    if(timesF[0] >= st_sec){
+                        currID.style.display = "table-cell";
                     } else {
-                        tr[i].style.display = "none";
+                        currID.style.display = "none";
                     }
                 }
             }
-        }else{
-            for (i = 0; i < tr.length; i++) {
-                        tr[i].style.display = "";
-            }
-        }
-    /*var table = document.getElementById("table");// $("#table");
-    for(var row in table.rows)
-    {
-        for(var cell in row.cells)
-        {
-            if (cell.id == id)
-            {
-                $("td").css({'display':'table-cell'});
-            }else{
-                $("td").css({'display':'none'});
-            }
-        }
-    }
-    */
-    //$('#t_start').html(id1);
-    //$('#t_end').html(id2);
-    //$(id).style("display:none;"); 
 }
+
+function idstrtosec(idStr)
+{
+    var 
+    //st28800end39600
+    return [28800, 39600];
+}
+
 function clear_filters()
 {
    /* $("td").css('display':'inline-block');*/
