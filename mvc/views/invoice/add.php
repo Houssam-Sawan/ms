@@ -414,7 +414,7 @@ $( function() {
 
 var types_amounts=[];
 var table_arr = [];
-var total_amount = 550;
+var amounts = [];
 
 $( function(){
     
@@ -438,7 +438,7 @@ function add_fee(){
     table_arr[selected_fee] = [types_amounts[selected_fee][1] , types_amounts[selected_fee][2]];
    // alert(selected_fee);
     refresh_fee_table();
-
+    update_amount();
     
     //var info = types_amounts[selected_fee][1] +":"+ types_amounts[selected_fee][2];
     
@@ -450,9 +450,33 @@ function add_fee(){
 function remove_fee(index){
     table_arr[index] = null;
     refresh_fee_table();
+    update_amount();
 }
 
+function update_amount(){
+    
+    if(table_arr != null){ 
+        for(var i = 1; i <  table_arr.length; i++){
+            if(table_arr[i] != null && table_arr[i][1] != undefined ){
 
+                amounts[i] = table_arr[i][1];
+
+            }else{
+                amounts[i] = 0;
+            }
+        }
+    }
+  //  $('#demo2').html(amounts.toString());
+    var total_amount = 0;
+    $.each(amounts, function(idx, value){
+        if(value != undefined){
+            total_amount += value;
+        }
+        
+    });
+
+    $('#amount').val(total_amount);
+}
 
 function refresh_fee_table(){
     
@@ -478,11 +502,16 @@ function refresh_fee_table(){
         }                
         t_content +=  "</tbody>"+
                 "</table></div></div>";
+        if(count == 0)
+        {
+            t_content = "";
+        }
     }
     
     //$('#demo2').html( table_arr.toString());// table_arr.toString());
     $('#fee-table-wraper').html(t_content);
-    $('#amount').val(total_amount);
+    
+    
 }
 
 
