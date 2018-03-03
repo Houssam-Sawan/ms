@@ -177,14 +177,17 @@
                            <?php
 
                                 $array = array('0' => "Select Fee Type");
+                                //store fee type info in array
+                                $feetypes_info = array('0' => array("0", "Select Fee Type", "0", "0"));
 
                                 foreach ($feetypes as $fee) {
 
                                     $array[$fee->feetypesID] = $fee->feetypes;
+                                    $feetypes_info[$fee->feetypesID] = array($fee->feetypesID, $fee->feetypes, $fee->feeamount, $fee->note);
 
                                 }
 
-                                echo form_dropdown("feetypesID", $array, set_value("feetypesID"), "id='feetypesID' class='form-control select2'");
+                                echo form_dropdown("feetypesID", $array, set_value("feetypesID"), "id='feetypesID' class='form-control'");
 
                             ?>
 
@@ -196,7 +199,7 @@
 
                         <div class="col-sm-2">
 
-                            <input type="button" id="add-fee" class="btn btn-success" value="Add Fee" >
+                            <input onclick="add_fee()" type="button" id="add-fee" class="btn btn-success" value="Add Fee" >
 
                         </div>
 
@@ -410,39 +413,63 @@ $( "#feetype" ).autocomplete({
 
 } );
 
-var types_amounts;
+var types_amounts=[];
 $( function(){
 
-    types_amounts = {
+   // types_amounts = {
 
-    <?php if(count($feetypes)) {
+        <?php
+            //echo '{';
+            foreach ($feetypes_info as $key => $idx) {
+                
+               // echo $key.':{'.$idx[0].','.$idx[1].','.$idx[2].'},';
+               echo 'types_amounts['.$key.']=['.$idx[0].',"'.$idx[1].'",'.$idx[2].'];';
+            }
+            //echo '0:{0}';
+        ?>
 
-        foreach ($feetypes as $feetyp) {
+        <?php 
+            /*
+            if(count($feetypes)) {
 
-            echo '"'.$feetyp->feetypes.'":'.$feetyp->feeamount.',';
+                foreach ($feetypes as $feetyp) {
 
-        }
-       // echo '0:0';
+                    echo '"'.$feetyp->feetypes.'":'.$feetyp->feeamount.',';
 
-    } ?>
+                }
+             } 
+             */
+        ?>
 
-    };
+   // };
+
+    $('#demo2').html(types_amounts[1][1]+types_amounts[1][2]);
 
    // var types_amount = types_amounts;// $.makeArray(types_amounts);
 
 } );
-
+/*
 $('#add-fee').click( function(){
 
     var selected_fee = $('#feeTypesID option:selected').text();
     alert(selected_fee);
     //var fee_amount = types_amounts[selected_fee];
     //$('#demo').html(selected_fee);
-
+    
 } );
+*/
+
+function add_fee(){
+
+    var selected_fee = document.getElementById("feetypesID").text();
+    $('#demo').html(selected_fee);
+
+}
 
 $('#date').datepicker();
 
 </script>
 
-<input type="text" id="demo2" value="ss"/>
+<p id="demo2">
+
+</p>
