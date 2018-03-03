@@ -195,15 +195,13 @@
 
                         </div>
 
-                        <div class="form-group">
+                       
 
                         <div class="col-sm-2">
 
                             <input onclick="add_fee()" type="button" id="add-fee" class="btn btn-success" value="Add Fee" >
 
                         </div>
-
-                    </div>
 
                         <span class="col-sm-4 control-label">
 
@@ -212,8 +210,26 @@
                         </span>
 
                     </div>
-<div id="demo">this is demo</div>
-
+<div id="fee-table-wraper">
+    <div class='form-group' >
+        <div class="col-sm-offset-2 col-sm-6">
+            <table id="#example1" class="table table-striped table-bordered table-hover dataTable no-footer">
+                <tbody id="fee_table_body">
+                    <tr>
+                        <th>Fee Type</th>
+                        <th>Amount</th>
+                        <th ></th>
+                    </tr>
+                    <tr>
+                        <td>Fee Type</td>
+                        <td>Amount</td>
+                        <th style="width: 50px;padding:1px;"><input onclick="remove_fee()" type="button" id="remove-fee" class="btn btn-success btn-sm" value="Remove" ></th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
                     <?php
 
@@ -461,10 +477,13 @@ $('#add-fee').click( function(){
 
 function add_fee(){
 
-    var selected_fee = document.getElementById("feetypesID").text();
-    $('#demo').html(selected_fee);
+    var selected_fee = document.getElementById("feetypesID").selectedIndex;
+    var info = types_amounts[selected_fee][1] +":"+ types_amounts[selected_fee][2];
+    $('#demo').html(info);
 
 }
+
+
 
 $('#date').datepicker();
 
