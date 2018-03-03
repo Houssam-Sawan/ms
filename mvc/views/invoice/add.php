@@ -211,24 +211,7 @@
 
                     </div>
 <div id="fee-table-wraper">
-    <div class='form-group' >
-        <div class="col-sm-offset-2 col-sm-6">
-            <table id="#example1" class="table table-striped table-bordered table-hover dataTable no-footer">
-                <tbody id="fee_table_body">
-                    <tr>
-                        <th>Fee Type</th>
-                        <th>Amount</th>
-                        <th ></th>
-                    </tr>
-                    <tr>
-                        <td>Fee Type</td>
-                        <td>Amount</td>
-                        <th style="width: 50px;padding:1px;"><input onclick="remove_fee()" type="button" id="remove-fee" class="btn btn-success btn-sm" value="Remove" ></th>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+    
 </div>
 
                     <?php
@@ -407,80 +390,99 @@ $('#classesID').change(function(event) {
 
 $( function() {
 
-var availableTags = [
+    var availableTags = [
 
-    <?php if(count($feetypes)) {
+        <?php if(count($feetypes)) {
 
-        foreach ($feetypes as $key => $feetype) {
+            foreach ($feetypes as $key => $feetype) {
 
-            echo '"'.$feetype->feetypes.'",';
+                echo '"'.$feetype->feetypes.'",';
 
-        }
+            }
 
-    } ?>
+        } ?>
 
-];
+    ];
 
-$( "#feetype" ).autocomplete({
+    $( "#feetype" ).autocomplete({
 
-  source: availableTags
+    source: availableTags
 
-});
+    });
 
 } );
 
 var types_amounts=[];
+var table_arr = [];
+var total_amount = 550;
+
 $( function(){
-
-   // types_amounts = {
-
+    
         <?php
-            //echo '{';
             foreach ($feetypes_info as $key => $idx) {
                 
-               // echo $key.':{'.$idx[0].','.$idx[1].','.$idx[2].'},';
                echo 'types_amounts['.$key.']=['.$idx[0].',"'.$idx[1].'",'.$idx[2].'];';
             }
-            //echo '0:{0}';
         ?>
 
-        <?php 
-            /*
-            if(count($feetypes)) {
 
-                foreach ($feetypes as $feetyp) {
+    //$('#demo2').html(types_amounts[1][1]+types_amounts[1][2]);
 
-                    echo '"'.$feetyp->feetypes.'":'.$feetyp->feeamount.',';
-
-                }
-             } 
-             */
-        ?>
-
-   // };
-
-    $('#demo2').html(types_amounts[1][1]+types_amounts[1][2]);
-
-   // var types_amount = types_amounts;// $.makeArray(types_amounts);
 
 } );
-/*
-$('#add-fee').click( function(){
 
-    var selected_fee = $('#feeTypesID option:selected').text();
-    alert(selected_fee);
-    //var fee_amount = types_amounts[selected_fee];
-    //$('#demo').html(selected_fee);
-    
-} );
-*/
 
 function add_fee(){
 
     var selected_fee = document.getElementById("feetypesID").selectedIndex;
-    var info = types_amounts[selected_fee][1] +":"+ types_amounts[selected_fee][2];
-    $('#demo').html(info);
+    table_arr[selected_fee] = [types_amounts[selected_fee][1] , types_amounts[selected_fee][2]];
+   // alert(selected_fee);
+    refresh_fee_table();
 
+    
+    //var info = types_amounts[selected_fee][1] +":"+ types_amounts[selected_fee][2];
+    
+    
+
+
+}
+
+function remove_fee(index){
+    table_arr[index] = null;
+    refresh_fee_table();
+}
+
+
+
+function refresh_fee_table(){
+    
+    var t_content = ""; 
+    if(table_arr != null){    
+        t_content = "<div class='form-group'>"+
+            "<div class='col-sm-offset-2 col-sm-6'>"+
+                "<table id='#example1' class='table table-striped table-bordered table-hover dataTable no-footer'>"+
+                    "<tbody><tr><th>Fee Type</th><th>Amount</th><th></th></tr>";
+                // '<tr><td>Fee Type</td><td>Amount</td><th style="width: 50px;padding:1px;"><input onclick="remove_fee()" type="button" id="remove-fee" class="btn btn-success btn-sm" value="Remove" ></th>'
+        var count = 0;
+
+        for(var i = 1; i <  table_arr.length; i++){
+            if(table_arr[i] != null){
+                count++;
+                t_content += '<tr><td>' + table_arr[i][0] + '</td>'
+                            + '<td>' + table_arr[i][1] + '</td>'
+                            + '<td style="width: 50px;padding:1px;">'
+                            + '<input onclick="remove_fee(' + i + ')"'
+                            + 'type="button" id="remove-fee" class="btn btn-success btn-sm" value="Remove" ></td>'
+                            + '</tr>';
+            }
+        }                
+        t_content +=  "</tbody>"+
+                "</table></div></div>";
+    }
+    
+    //$('#demo2').html( table_arr.toString());// table_arr.toString());
+    $('#fee-table-wraper').html(t_content);
+    $('#amount').val(total_amount);
 }
 
 
