@@ -388,6 +388,9 @@ $('#classesID').change(function(event) {
 
 
 
+
+
+
 $( function() {
 
     var availableTags = [
@@ -415,6 +418,7 @@ $( function() {
 var types_amounts=[];
 var table_arr = [];
 var amounts = [];
+var selected_fees = {};
 
 $( function(){
     
@@ -514,6 +518,58 @@ function refresh_fee_table(){
     
 }
 
+
+$('#amount').change(function(event) {
+    var counts = 0;
+    if(table_arr != null){ 
+        for(var i = 1; i <  table_arr.length; i++){
+            if(table_arr[i] != null && table_arr[i][0] != undefined ){
+
+                selected_fees.i = table_arr[i][0];
+                counts++;
+
+            }else{
+                selected_fees.i = null;
+            }
+        }
+    }
+
+if(counts == 0) {
+
+   selected_fees = [];
+
+} else {
+    /*
+        var info = {};
+        info.c = classesID;
+        info.s = sectionID;
+    */
+
+    $.ajax({
+
+        async: false,
+
+        type: 'POST',
+
+        url: "<?=base_url('invoice/update_selected_fees')?>",
+
+        data: selected_fees,
+
+        //dataType: "html",
+
+        success: function(data) {
+
+           //alert(data);
+
+          // $('#roll').val(data);
+
+        }
+
+    });
+
+}
+
+});
 
 
 $('#date').datepicker();

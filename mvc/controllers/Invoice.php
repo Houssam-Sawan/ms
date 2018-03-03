@@ -2993,6 +2993,25 @@ class Invoice extends Admin_Controller {
 	}
 
 
+	function update_selected_fees()
+	{
+		$dat = 565;
+		$cID = $this->input->post('1');
+		//$sID = $this->input->post('s');
+/*
+		if((int)$cID  && (int)$sID ){
+			$rollss = $this->student_m->get_max_roll("", $cID, $sID); //$cID, $sID);
+			//$this->data['maxRoll'] =  (int)($rollss->maxroll) + 1;
+			$dat = (int)($rollss->maxroll) + 1;
+			//echo $dat;
+		}
+*/
+		$dat = $cID;
+		echo $dat;
+
+	}
+
+
 
 	function unique_paymentmethod() {
 
