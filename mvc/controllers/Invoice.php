@@ -40,6 +40,8 @@ class Invoice extends Admin_Controller {
 
 		$this->load->model("feetypes_m");
 
+		$this->load->model("fees_m");
+
 		$this->load->model('payment_m');
 
 		$this->load->model("classes_m");

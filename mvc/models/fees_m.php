@@ -2,7 +2,7 @@
 
 
 
-class Invoice_m extends MY_Model {
+class Fees_m extends MY_Model {
 
 
 
@@ -24,7 +24,7 @@ class Invoice_m extends MY_Model {
 
     }
 
-    
+
     
 }
 
