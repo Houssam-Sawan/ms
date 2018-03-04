@@ -2995,8 +2995,19 @@ class Invoice extends Admin_Controller {
 
 	function update_selected_fees()
 	{
-		$dat = 565;
-		$cID = $this->input->post('1');
+		$dat = array();
+		//$curr_fee = null;
+		for($i = 1; $i< 11; $i++){
+			$curr_idx =$i+'';//(string)$i;
+			//echo $curr_idx.': ';
+			$curr_fee = $this->input->post($curr_idx);
+			//echo $curr_fee.', ';
+			if($curr_fee !== null){
+				$dat[$i] = $curr_fee;
+			}
+
+		}
+		//$cID = $this->input->post($test);
 		//$sID = $this->input->post('s');
 /*
 		if((int)$cID  && (int)$sID ){
@@ -3006,8 +3017,10 @@ class Invoice extends Admin_Controller {
 			//echo $dat;
 		}
 */
-		$dat = $cID;
-		echo $dat;
+		
+		foreach ($dat as $key => $value) {
+			echo $key.': '.$value.',';
+		}
 
 	}
 

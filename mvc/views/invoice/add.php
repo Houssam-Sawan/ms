@@ -418,7 +418,7 @@ $( function() {
 var types_amounts=[];
 var table_arr = [];
 var amounts = [];
-var selected_fees = {};
+var selected_fees = [];
 
 $( function(){
     
@@ -525,25 +525,39 @@ $('#amount').change(function(event) {
         for(var i = 1; i <  table_arr.length; i++){
             if(table_arr[i] != null && table_arr[i][0] != undefined ){
 
-                selected_fees.i = table_arr[i][0];
+                selected_fees[i] = table_arr[i][0];
+                
                 counts++;
 
             }else{
-                selected_fees.i = null;
+                selected_fees[i] = null;
             }
         }
     }
-
+    
+    
 if(counts == 0) {
 
    selected_fees = [];
 
 } else {
-    /*
-        var info = {};
-        info.c = classesID;
-        info.s = sectionID;
-    */
+   // alert(selected_fees.length);
+
+        var fee_info = {};
+        //var fee_count = 0;
+        if(selected_fees != null){
+            for(var i = 1; i< selected_fees.length ; i++){
+                if(selected_fees[i] != null){
+                    //alert(selected_fees[i]);
+                    var idx = i +'';
+                    fee_info[idx] = selected_fees[i];
+                   // alert(fee_info[idx]);
+                }
+            }
+        }
+       //alert(selected_fees.length);
+        //alert(fee_info['1']);
+        
 
     $.ajax({
 
@@ -553,13 +567,13 @@ if(counts == 0) {
 
         url: "<?=base_url('invoice/update_selected_fees')?>",
 
-        data: selected_fees,
+        data: fee_info,
 
         //dataType: "html",
 
         success: function(data) {
 
-           //alert(data);
+           alert(data);
 
           // $('#roll').val(data);
 
