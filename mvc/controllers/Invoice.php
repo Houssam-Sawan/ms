@@ -57,6 +57,9 @@ class Invoice extends Admin_Controller {
 		$language = $this->session->userdata('lang');
 
 		$this->lang->load('invoice', $language);
+		
+		$this->$fdata = array(1,5);
+		$this->data['feedata'] = array(2,6) ;
 
 		require_once(APPPATH."libraries/Omnipay/vendor/autoload.php");
 
@@ -664,6 +667,9 @@ class Invoice extends Admin_Controller {
 
 		$this->data['feetypes'] = $this->feetypes_m->get_feetypes();
 
+		$this->data['feedata'] = $this->update_selected_fees();
+		
+
 		$classesID = $this->input->post("classesID");
 
 		if($classesID != 0) {
@@ -756,6 +762,8 @@ class Invoice extends Admin_Controller {
 
 					$returnID = $this->invoice_m->insert_invoice($array);
 
+					//$this->invoice_m->insert_fees($arrcp, $returnID);
+
 					$this->session->set_flashdata('success', $this->lang->line('menu_success'));
 
 				 	redirect(base_url("invoice/view/$returnID"));
@@ -805,7 +813,7 @@ class Invoice extends Admin_Controller {
 						);
 
 						$this->invoice_m->insert_invoice($array);
-
+						
 					}
 
 					$this->session->set_flashdata('success', $this->lang->line('menu_success'));
@@ -2996,31 +3004,18 @@ class Invoice extends Admin_Controller {
 	function update_selected_fees()
 	{
 		$dat = array();
-		//$curr_fee = null;
-		for($i = 1; $i< 11; $i++){
-			$curr_idx =$i+'';//(string)$i;
-			//echo $curr_idx.': ';
+		for($i = 1; $i< 10; $i++){
+			$curr_idx =$i+'';
 			$curr_fee = $this->input->post($curr_idx);
-			//echo $curr_fee.', ';
-			if($curr_fee !== null){
-				$dat[$i] = $curr_fee;
+			if($curr_fee != null){
+				array_push($dat, $i);
 			}
-
 		}
-		//$cID = $this->input->post($test);
-		//$sID = $this->input->post('s');
-/*
-		if((int)$cID  && (int)$sID ){
-			$rollss = $this->student_m->get_max_roll("", $cID, $sID); //$cID, $sID);
-			//$this->data['maxRoll'] =  (int)($rollss->maxroll) + 1;
-			$dat = (int)($rollss->maxroll) + 1;
-			//echo $dat;
-		}
-*/
+		//$this->data['feedata']= array('this', 'is', 'test');
+		print_r($dat);
 		
-		foreach ($dat as $key => $value) {
-			echo $key.': '.$value.',';
-		}
+		//$this->$fdata = $dat;
+		return $dat;
 
 	}
 

@@ -23,7 +23,20 @@
     </div><!-- /.box-header -->
 
     <!-- form start -->
+<div>
+<h3>Test here</h3>
 
+<?php
+
+print_r($feedata);
+//print_r($this->$fdata);
+$feedata = array(10,11);
+
+print_r($feedata);
+?>
+
+
+</div>
     <div class="box-body">
 
         <div class="row">
@@ -334,7 +347,7 @@
 
                     <div class="callout callout-danger">
 
-                        <p><b>Note:</b> If you need any fee type then you can add before you create invoice and also you can write new fee type here into fee type input it will be saved.</p>
+                        <p><b>Note:</b> If you need any fee type then you can add before you create invoice.</p>
 
                     </div>
 
@@ -514,12 +527,12 @@ function refresh_fee_table(){
     
     //$('#demo2').html( table_arr.toString());// table_arr.toString());
     $('#fee-table-wraper').html(t_content);
-    
+    update_selected_fees();
     
 }
 
 
-$('#amount').change(function(event) {
+function update_selected_fees() {
     var counts = 0;
     if(table_arr != null){ 
         for(var i = 1; i <  table_arr.length; i++){
@@ -575,15 +588,13 @@ if(counts == 0) {
 
            alert(data);
 
-          // $('#roll').val(data);
-
         }
 
     });
 
 }
 
-});
+}
 
 
 $('#date').datepicker();
