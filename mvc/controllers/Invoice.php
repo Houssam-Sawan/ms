@@ -3005,25 +3005,18 @@ class Invoice extends Admin_Controller {
 			$curr_fee = $this->input->post($curr_idx);
 			//echo $curr_fee.', ';
 			if($curr_fee !== null){
-				$dat[$i] = $curr_fee;
+				//$dat[$i] = $curr_fee;
+				array_push($dat, $i);
 			}
 
 		}
-		//$cID = $this->input->post($test);
-		//$sID = $this->input->post('s');
-/*
-		if((int)$cID  && (int)$sID ){
-			$rollss = $this->student_m->get_max_roll("", $cID, $sID); //$cID, $sID);
-			//$this->data['maxRoll'] =  (int)($rollss->maxroll) + 1;
-			$dat = (int)($rollss->maxroll) + 1;
-			//echo $dat;
-		}
-*/
-		
+
+		/*
 		foreach ($dat as $key => $value) {
 			echo $key.': '.$value.',';
-		}
+		}*/
 
+		print_r($dat);
 	}
 
 
