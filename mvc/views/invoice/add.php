@@ -514,12 +514,12 @@ function refresh_fee_table(){
     
     //$('#demo2').html( table_arr.toString());// table_arr.toString());
     $('#fee-table-wraper').html(t_content);
-    
+    update_selected_fees();
     
 }
 
 
-$('#amount').change(function(event) {
+function update_selected_fees() {
     var counts = 0;
     if(table_arr != null){ 
         for(var i = 1; i <  table_arr.length; i++){
@@ -557,8 +557,6 @@ if(counts == 0) {
         }
        //alert(selected_fees.length);
         //alert(fee_info['1']);
-        
-
     $.ajax({
 
         async: false,
@@ -583,7 +581,7 @@ if(counts == 0) {
 
 }
 
-});
+}
 
 
 $('#date').datepicker();
