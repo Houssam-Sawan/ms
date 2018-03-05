@@ -483,6 +483,8 @@ function update_amount(){
 function refresh_fee_table(){
     
     var t_content = ""; 
+    var selected_types = "";    
+
     if(table_arr != null){    
         t_content = "<div class='form-group'>"+
             "<div class='col-sm-offset-2 col-sm-6'>"+
@@ -494,12 +496,15 @@ function refresh_fee_table(){
         for(var i = 1; i <  table_arr.length; i++){
             if(table_arr[i] != null){
                 count++;
+
                 t_content += '<tr><td>' + table_arr[i][0] + '</td>'
                             + '<td>' + table_arr[i][1] + '</td>'
                             + '<td style="width: 50px;padding:1px;">'
                             + '<input onclick="remove_fee(' + i + ')"'
                             + 'type="button" id="remove-fee" class="btn btn-success btn-sm" value="Remove" ></td>'
                             + '</tr>';
+
+                selected_types += table_arr[i][0]  + ',';
             }
         }                
         t_content +=  "</tbody>"+
@@ -507,10 +512,16 @@ function refresh_fee_table(){
         if(count == 0)
         {
             t_content = "";
+            selected_types = "";
+        }else{
+            selected_types = selected_types.replace(/,\s*$/, "");
         }
     }
     
     $('#fee-table-wraper').html(t_content);
+
+    $('#feetype').val(selected_types);
+
     update_selected_fees();
     
 }
@@ -539,6 +550,7 @@ if(counts == 0) {
 
 } else {
 
+    var fee_info = {};
         if(selected_fees != null){
             for(var i = 1; i< selected_fees.length ; i++){
                 if(selected_fees[i] != null){
@@ -551,6 +563,7 @@ if(counts == 0) {
         }
 
 }
+
 
 }
 
