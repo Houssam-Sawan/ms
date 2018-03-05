@@ -711,10 +711,15 @@ class Invoice extends Admin_Controller {
 				//Get Delected_fees
 				$fees = array();
 
-					for($i =1 ; $i<5;$i++){
+				$fees_size = count($this->data['feetypes']);
+				
+					for($i = 1 ; $i <= $fees_size ; $i++){
 						$currp = $this->input->post('f'.$i);
+
 						if((int)$currp){
+
 							array_push($fees, $currp);
+
 						}
 					}
 				/*

@@ -316,8 +316,7 @@
                     </div>
                     <div class="form-group hidden">
                     <div id="selected_fees" class="">
-                    <input type="number" id="f1" name="f1" value="1" >
-                    <input type="number" id="f2" name="f2" value="2" >
+                    
                     </div>
                     </div>
 
@@ -341,7 +340,7 @@
 
                     <div class="callout callout-danger">
 
-                        <p><b>Note:</b> If you need any fee type then you can add before you create invoice and also you can write new fee type here into fee type input it will be saved.</p>
+                        <p><b>Note:</b> If you need any fee type then you can add before you create invoice.</p>
 
                     </div>
 
@@ -550,20 +549,35 @@ if(counts == 0) {
 
 } else {
 
-    var fee_info = {};
+    var fees_input = "";
+
         if(selected_fees != null){
+
             for(var i = 1; i< selected_fees.length ; i++){
+
                 if(selected_fees[i] != null){
-                    //alert(selected_fees[i]);
-                    var idx = i +'';
-                    fee_info[idx] = selected_fees[i];
-                   // alert(fee_info[idx]);
+
+                    fees_input += '<input type="number" id="f'+
+                                    i+
+                                    '" name="f'+
+                                    i+
+                                    '" value="'+
+                                    i+
+                                    '">';
+
                 }
+
             }
+            
         }
 
 }
 
+$('#selected_fees').html(fees_input);
+/*
+<input type="number" id="f1" name="f1" value="1" >
+<input type="number" id="f2" name="f2" value="2" >
+*/
 
 }
 
