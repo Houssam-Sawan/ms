@@ -313,6 +313,12 @@
                         </span>
 
                     </div>
+                    <div class="form-group">
+                    <div id="selected_fees" class="">
+                    <input type="number" id="f1" name="f1" value="1" >
+                    <input type="number" id="f2" name="f2" value="2" >
+                    </div>
+                    </div>
 
 
 

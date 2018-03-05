@@ -32,6 +32,8 @@ class Invoice extends Admin_Controller {
 
 */
 
+ public $selected_fees;
+
 	function __construct() {
 
 		parent::__construct();
@@ -59,6 +61,8 @@ class Invoice extends Admin_Controller {
 		$language = $this->session->userdata('lang');
 
 		$this->lang->load('invoice', $language);
+
+		$this->$selected_fees = array(10,11);
 
 		require_once(APPPATH."libraries/Omnipay/vendor/autoload.php");
 
@@ -706,7 +710,19 @@ class Invoice extends Admin_Controller {
 
 				}
 
+				$fees = array();
 
+					for($i =1 ; $i<5;$i++){
+						//$fname ='f'+$i;
+						$currp = $this->input->post('f'.$i);
+						if((int)$currp){
+							array_push($fees, $currp);
+						}
+					}
+					//$currp = $this->input->post('f2');
+						//if((int)$cuurp){
+							//array_push($fees, $currp);
+						//}
 /*
 				$getfeetype = $this->feetypes_m->get_single_feetypes(array('feetypes' => $this->input->post('feetype')));
 
@@ -757,6 +773,16 @@ class Invoice extends Admin_Controller {
 					);
 
 					$returnID = $this->invoice_m->insert_invoice($array);
+
+					
+
+					//$fees = $this->update_selected_fees();
+
+					//$fees = $this->$selected_fees;
+
+
+					$this->fees_m->insert_fees_invoice($fees, $returnID);
+					
 
 					$this->session->set_flashdata('success', $this->lang->line('menu_success'));
 
@@ -2998,25 +3024,28 @@ class Invoice extends Admin_Controller {
 	function update_selected_fees()
 	{
 		$dat = array();
-		//$curr_fee = null;
 		for($i = 1; $i< 11; $i++){
-			$curr_idx =$i+'';//(string)$i;
-			//echo $curr_idx.': ';
+			$curr_idx =$i+'';
 			$curr_fee = $this->input->post($curr_idx);
-			//echo $curr_fee.', ';
 			if($curr_fee !== null){
-				//$dat[$i] = $curr_fee;
 				array_push($dat, $i);
 			}
 
 		}
-
 		/*
-		foreach ($dat as $key => $value) {
-			echo $key.': '.$value.',';
-		}*/
+		print_r($this->$selected_fees);
+		$this->$selected_fees =array(1,4); //$dat;
+		echo 'after';
 
-		print_r($dat);
+		print_r($this->$selected_fees);
+		//return $this->$dats;*/
+		return array(1,4);
+	}
+
+	//function link_to_invoice($id){}
+
+	function mod_arr(){
+		return array(1,4);
 	}
 
 

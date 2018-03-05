@@ -22,8 +22,31 @@ class Fees_m extends MY_Model {
 
 		parent::__construct();
 
-    }
+	}
 
+	
+	function insert_fees($array) {
+
+		$error = parent::insert($array);
+
+		return $error;
+
+	}
+
+	function insert_fees_invoice($array, $id){
+		$error;
+		foreach($array as $value){
+			$data = array(
+				'invoiceID' => $id,
+				'feeID' => $value
+			);
+
+			$error += $this->insert_fees($data);
+		}
+		
+		return $error;
+
+	}
 
     
 }
