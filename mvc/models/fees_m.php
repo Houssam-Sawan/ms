@@ -48,6 +48,21 @@ class Fees_m extends MY_Model {
 
 	}
 
+	function get_fees_by_invoiceID($invoiceID){
+
+		$this->db->select('*');
+
+		$this->db->from('invoice_items');
+
+		$this->db->where('invoice.invoiceID', $invoiceID);
+
+		$query = $this->db->get();
+
+		return $query->row();
+
+
+	}
+
     
 }
 
