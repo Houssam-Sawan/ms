@@ -172,7 +172,7 @@
 
                         <div class="col-sm-6">
 
-                           <!-- <input type="text" class="form-control" id="feetype" name="feetype" value="//set_value('feetype')?>" > -->
+                            <input type="text" class="" id="feetype" name="feetype" value="" >
 
                            <?php
 
@@ -182,7 +182,7 @@
 
                                 foreach ($feetypes as $fee) {
 
-                                    $array[$fee->feetypesID] = $fee->feetypes;
+                                    $array[$fee->feetypesID] = $fee->feetypes .'  ||  '. $fee->feeamount;
                                     $feetypes_info[$fee->feetypesID] = array($fee->feetypesID, $fee->feetypes, $fee->feeamount, $fee->note);
 
                                 }
@@ -210,9 +210,10 @@
                         </span>
 
                     </div>
-<div id="fee-table-wraper">
-    
-</div>
+
+                    <div id="fee-table-wraper">
+                        
+                    </div>
 
                     <?php
 
@@ -395,31 +396,33 @@ $('#classesID').change(function(event) {
 
 
 
+/*
 
+    $( function() {
 
-$( function() {
+        var availableTags = [
 
-    var availableTags = [
+            <?php if(count($feetypes)) {
 
-        <?php if(count($feetypes)) {
+                foreach ($feetypes as $key => $feetype) {
 
-            foreach ($feetypes as $key => $feetype) {
+                    echo '"'.$feetype->feetypes.'",';
 
-                echo '"'.$feetype->feetypes.'",';
+                }
 
-            }
+            } ?>
 
-        } ?>
+        ];
 
-    ];
+        $( "#feetype" ).autocomplete({
 
-    $( "#feetype" ).autocomplete({
+        source: availableTags
 
-    source: availableTags
+        });
 
-    });
+    } );
 
-} );
+*/
 
 var types_amounts=[];
 var table_arr = [];
@@ -435,10 +438,6 @@ $( function(){
             }
         ?>
 
-
-    //$('#demo2').html(types_amounts[1][1]+types_amounts[1][2]);
-
-
 } );
 
 
@@ -446,14 +445,8 @@ function add_fee(){
 
     var selected_fee = document.getElementById("feetypesID").selectedIndex;
     table_arr[selected_fee] = [types_amounts[selected_fee][1] , types_amounts[selected_fee][2]];
-   // alert(selected_fee);
     refresh_fee_table();
     update_amount();
-    
-    //var info = types_amounts[selected_fee][1] +":"+ types_amounts[selected_fee][2];
-    
-    
-
 
 }
 
@@ -476,7 +469,6 @@ function update_amount(){
             }
         }
     }
-  //  $('#demo2').html(amounts.toString());
     var total_amount = 0;
     $.each(amounts, function(idx, value){
         if(value != undefined){
@@ -518,7 +510,6 @@ function refresh_fee_table(){
         }
     }
     
-    //$('#demo2').html( table_arr.toString());// table_arr.toString());
     $('#fee-table-wraper').html(t_content);
     update_selected_fees();
     
@@ -547,10 +538,7 @@ if(counts == 0) {
    selected_fees = [];
 
 } else {
-   // alert(selected_fees.length);
 
-        var fee_info = {};
-        //var fee_count = 0;
         if(selected_fees != null){
             for(var i = 1; i< selected_fees.length ; i++){
                 if(selected_fees[i] != null){
@@ -561,29 +549,6 @@ if(counts == 0) {
                 }
             }
         }
-       //alert(selected_fees.length);
-        //alert(fee_info['1']);
-    $.ajax({
-
-        async: false,
-
-        type: 'POST',
-
-        url: "<?=base_url('invoice/update_selected_fees')?>",
-
-        data: fee_info,
-
-        //dataType: "html",
-
-        success: function(data) {
-
-           alert(data);
-
-          // $('#roll').val(data);
-
-        }
-
-    });
 
 }
 
