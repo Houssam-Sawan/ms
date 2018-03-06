@@ -1067,6 +1067,26 @@ class Invoice extends Admin_Controller {
 
 		$usertypeID = $this->session->userdata("usertypeID");
 
+		$curr_id = htmlentities(escapeString($this->uri->segment(3)));
+
+		if((int)$curr_id){
+			
+			/*$this->data['curr_fees']*/ $curr_fees = $this->fees_m->get_fees_by_invoiceID($curr_id);
+
+			/*$this->data['all_feetypes']*/ //$all_feetypes = $this->feetypes_m->get_feetypes();
+
+			$fee_arr = array();
+			foreach ($curr_fees as $fee) {
+				$curr_fee_id = $fee->feeID;
+				$curr_feetype = get_single_feetypes(array('feetypesID' => $feeID));
+				array_push($fee_arr , $curr_feetype);
+			}
+
+			$this->data['included_feetypes'] = $fee_arr;
+
+
+		}
+
 		if($usertypeID == 3) {
 
 			$id = htmlentities(escapeString($this->uri->segment(3)));

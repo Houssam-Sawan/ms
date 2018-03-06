@@ -54,7 +54,7 @@ class Fees_m extends MY_Model {
 
 		$this->db->from('invoice_items');
 
-		$this->db->where('invoice.invoiceID', $invoiceID);
+		$this->db->where('invoice_items.invoiceID', $invoiceID);
 
 		$query = $this->db->get();
 

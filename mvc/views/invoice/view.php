@@ -112,20 +112,29 @@
 		                </tr>
 		            </thead>
 		            <tbody style="color:#707478">
+                    <?php
+                        $sub_total = 0;
+                        $row_count = 1;
+                        foreach ($included_feetypes as $curr):
+                           
+                    ?>
 		                <tr>
 		                    <td data-title="<?=$this->lang->line('slno')?>">
-		                        <?php echo 1; ?>
+		                        <?php echo $row_count; ?>
 		                    </td>
 		                    <td data-title="<?=$this->lang->line('invoice_feetype')?>">
-		                        <?php echo $invoice->feetype ?>
+		                        <?php echo $curr->feetypes; ?>
 		                    </td>
                             <td data-title="<?=$this->lang->line('invoice_discount')?>">
-                                <?php echo $invoice->discount ?>
+                                <?php echo $invoice->discount; ?>
                             </td>
 		                    <td class="invoice-td" data-title="<?=$this->lang->line('invoice_subtotal')?> ">
-                                <?php echo $invoice->amount; ?>
+                                <?php echo $curr->feeamount; ?>
 		                    </td>
 		                </tr>
+
+                    <?php endforeach; ?>
+
 		            </tbody>
 		        </table>
 		    </div>
