@@ -120,7 +120,7 @@
                     ?>
 		                <tr>
 		                    <td data-title="<?=$this->lang->line('slno')?>">
-		                        <?php echo $row_count; ?>
+		                        <?php echo $row_count++; ?>
 		                    </td>
 		                    <td data-title="<?=$this->lang->line('invoice_feetype')?>">
 		                        <?php echo $curr->feetypes; ?>
@@ -129,7 +129,8 @@
                                 <?php echo $invoice->discount; ?>
                             </td>
 		                    <td class="invoice-td" data-title="<?=$this->lang->line('invoice_subtotal')?> ">
-                                <?php echo $curr->feeamount; ?>
+                                <?php $amount_after_discount = $curr->feeamount - (($curr->feeamount/100) * $invoice->discount) ;  ?>
+                                <?php echo $amount_after_discount; ?>
 		                    </td>
 		                </tr>
 

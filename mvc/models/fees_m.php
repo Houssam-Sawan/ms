@@ -48,9 +48,9 @@ class Fees_m extends MY_Model {
 
 	}
 
-	function get_fees_by_invoiceID($invoiceID){
+	function get_feesID_by_invoiceID($invoiceID){
 
-		$this->db->select('*');
+		$this->db->select('feeID');
 
 		$this->db->from('invoice_items');
 
@@ -58,7 +58,13 @@ class Fees_m extends MY_Model {
 
 		$query = $this->db->get();
 
-		return $query->row();
+		$array = array();
+
+		foreach ($query->result() as $row) {
+			array_push($array, $row->feeID);
+		}
+
+		return $array; //$query->result();
 
 
 	}
