@@ -111,7 +111,7 @@
 		                    <th class="col-lg-2" style="text-align: right;"><?=$this->lang->line('invoice_total')?></th>
 		                </tr>
 		            </thead>
-		            <tbody style="color:#707478">
+		            <tbody style="background-color:#b6cfe7;color:#283038">
                     <?php
                         $sub_total = 0;
                         $row_count = 1;
