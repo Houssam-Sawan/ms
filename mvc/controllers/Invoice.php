@@ -464,7 +464,7 @@ class Invoice extends Admin_Controller {
 
 				'label' => $this->lang->line("invoice_feetype"),
 
-				'rules' => 'trim|xss_clean|max_length[128]'
+				'rules' => 'trim|required|xss_clean|max_length[128]'
 
 			),
 

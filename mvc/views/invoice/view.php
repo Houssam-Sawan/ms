@@ -107,8 +107,8 @@
 		                <tr>
 		                    <th class="col-lg-1"><?=$this->lang->line('slno')?></th>
 		                    <th class="col-lg-5"><?=$this->lang->line('invoice_feetype')?></th>
-                            <th class="col-lg-4"><?=$this->lang->line('invoice_discount')?></th>
-		                    <th class="col-lg-2" style="text-align: right;"><?=$this->lang->line('invoice_total')?></th>
+                            <th class="col-lg-4"><?=$this->lang->line('feetype_note')?></th>
+		                    <th class="col-lg-2" style="text-align: right;"><?=$this->lang->line('feetype_amount')." (".$siteinfos->currency_code.")"?></th>
 		                </tr>
 		            </thead>
 		            <tbody style="background-color:#b6cfe7;color:#283038">
@@ -125,12 +125,12 @@
 		                    <td data-title="<?=$this->lang->line('invoice_feetype')?>">
 		                        <?php echo $curr->feetypes; ?>
 		                    </td>
-                            <td data-title="<?=$this->lang->line('invoice_discount')?>">
-                                <?php echo $invoice->discount; ?>
+                            <td data-title="<?=$this->lang->line('feetype_note')?>">
+                                <?php echo $curr->note; //echo $invoice->discount; ?>
                             </td>
-		                    <td class="invoice-td" data-title="<?=$this->lang->line('invoice_subtotal')?> ">
-                                <?php $amount_after_discount = $curr->feeamount - (($curr->feeamount/100) * $invoice->discount) ;  ?>
-                                <?php echo $amount_after_discount; ?>
+		                    <td class="invoice-td" data-title="<?=$this->lang->line('feetype_amount')?> ">
+                                <?php //$amount_after_discount = $curr->feeamount - (($curr->feeamount/100) * $invoice->discount) ;  ?>
+                                <?php echo $siteinfos->currency_symbol." ".number_format($curr->feeamount, 2); //echo $amount_after_discount; ?>
 		                    </td>
 		                </tr>
 
@@ -149,12 +149,12 @@
 		        <div class="table-responsive">
 		            <table class="table">
 		                <tr>
-                            <th class="col-sm-8 col-xs-8"><?=$this->lang->line('invoice_subtotal')?></th>
+                            <th class="col-sm-8 col-xs-8"><?=$this->lang->line('invoice_subtotal')." (".$siteinfos->currency_code.")"?></th>
                             <td style="text-align: right;" class="col-sm-4 col-xs-4"><b><?=$siteinfos->currency_symbol.' '.number_format($invoice->amount, 2)?></b></td>
 		                </tr>
                         <?php $discountAmount = 0; ?>
                         <tr>
-                            <th class="col-sm-8 col-xs-8"><?=$this->lang->line('invoice_discount')?></th>
+                            <th class="col-sm-8 col-xs-8"><?=$this->lang->line('invoice_discount').' ( '. $invoice->discount .' %)'?></th>
                             <td style="text-align: right;" class="col-sm-4 col-xs-4"><b><?php $discountAmount = ((($invoice->amount)/100)*$invoice->discount); echo $siteinfos->currency_symbol.' '.number_format($discountAmount, 2); ?></b></td>
                         </tr>
                         <tr>
