@@ -170,7 +170,7 @@
 
                         <div class="col-sm-6">
 
-                            <input type="text" class="" id="feetype" name="feetype" value="" >
+                            <input type="text" class="hidden" id="feetype" name="feetype" value="" >
 
                            <?php
 
@@ -333,7 +333,6 @@
                     </div>
 
 
-
                 </form>
 
             </div>
@@ -420,19 +419,25 @@ $( function(){
                 
                echo 'types_amounts['.$key.']=['.$idx[0].',"'.$idx[1].'",'.$idx[2].'];';
             }
-        ?>
 
-       // add_fee();
+        ?>
+    
+    init_table_arr();
+    refresh_fee_table();
 
 } );
 
 
 function init_table_arr(){
+    
+        <?php 
+            foreach ($included_feetypes_edit as $fee) {
+        
+        
+                echo 'table_arr['. $fee->feetypesID .'] = ["'. $fee->feetypes .'", '. $fee->feeamount .' ];';
 
-    <?php foreach ($included_feetypes as $value) {
-        # code...
-    }
-    ?>
+            }
+        ?>
 }
 
 function add_fee(){
@@ -537,41 +542,37 @@ function update_selected_fees() {
     }
     
     
-if(counts == 0) {
+    if(counts == 0) {
 
-   selected_fees = [];
+    selected_fees = [];
 
-} else {
+    } else {
 
-    var fees_input = "";
+        var fees_input = "";
 
-        if(selected_fees != null){
+            if(selected_fees != null){
 
-            for(var i = 1; i< selected_fees.length ; i++){
+                for(var i = 1; i< selected_fees.length ; i++){
 
-                if(selected_fees[i] != null){
+                    if(selected_fees[i] != null){
 
-                    fees_input += '<input type="number" id="f'+
-                                    i+
-                                    '" name="f'+
-                                    i+
-                                    '" value="'+
-                                    i+
-                                    '">';
+                        fees_input += '<input type="number" id="f'+
+                                        i+
+                                        '" name="f'+
+                                        i+
+                                        '" value="'+
+                                        i+
+                                        '">';
+
+                    }
 
                 }
-
+                
             }
-            
-        }
 
-}
+    }
 
-$('#selected_fees').html(fees_input);
-/*
-<input type="number" id="f1" name="f1" value="1" >
-<input type="number" id="f2" name="f2" value="2" >
-*/
+    $('#selected_fees').html(fees_input);
 
 }
 

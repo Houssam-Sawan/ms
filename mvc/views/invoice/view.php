@@ -115,7 +115,7 @@
                     <?php
                         $sub_total = 0;
                         $row_count = 1;
-                        foreach ($included_feetypes as $curr):
+                        foreach ($included_feetypes_view as $curr):
                            
                     ?>
 		                <tr>
