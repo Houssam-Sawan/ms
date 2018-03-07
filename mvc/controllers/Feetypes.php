@@ -76,7 +76,7 @@ class Feetypes extends Admin_Controller {
 
 					'label' => 'Amount', 
 
-					'rules' => 'trim|required|xss_clean|max_length[60]|callback_unique_feetypes'
+					'rules' => 'trim|required|xss_clean|max_length[60]|callback_valid_number'
 
 				),
 
@@ -235,6 +235,21 @@ class Feetypes extends Admin_Controller {
 			redirect(base_url("feetypes/index"));
 
 		}
+
+	}
+
+
+	function valid_number() {
+
+		if($this->input->post('feeamount') && $this->input->post('feeamount') < 0) {
+
+			$this->form_validation->set_message("valid_number", "%s is invalid number");
+
+			return FALSE;
+
+		}
+
+		return TRUE;
 
 	}
 

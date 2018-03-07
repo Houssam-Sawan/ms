@@ -85,7 +85,7 @@
 
                         <div class="col-sm-6">
 
-                            <input type="text" class="form-control" id="feeamount" name="feeamount" value="<?=set_value('feeamount')?>" >
+                            <input type="number" class="form-control" id="feeamount" name="feeamount" value="<?=set_value('feeamount')?>" >
 
                         </div>
 
