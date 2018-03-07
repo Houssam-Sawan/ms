@@ -881,6 +881,14 @@ class Invoice extends Admin_Controller {
 
 		$id = htmlentities(escapeString($this->uri->segment(3)));
 
+		if((int)$curr_id){
+			
+			
+			$array2 = $this->fees_m->get_feesID_by_invoiceID($curr_id);
+
+			$this->data['included_feetypes'] = $this->feetypes_m->get_order_by_feeid($array2); //get_feetypes();
+
+		}
 
 
 		if((int)$id) {
