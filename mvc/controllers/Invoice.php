@@ -708,7 +708,7 @@ class Invoice extends Admin_Controller {
 
 				}
 
-				//Get Delected_fees
+				//Get Selected_fees by id
 				$fees = array();
 
 				$fees_size = count($this->data['feetypes']);
@@ -888,7 +888,14 @@ class Invoice extends Admin_Controller {
 			
 			$array2 = $this->fees_m->get_feesID_by_invoiceID($curr_id);
 
-			$this->data['included_feetypes_edit'] = $this->feetypes_m->get_order_by_feeid($array2); //get_feetypes();
+			if(empty($array2)){
+
+				$this->data['included_feetypes_edit'] = array();
+			}else{
+
+				$this->data['included_feetypes_edit'] = $this->feetypes_m->get_order_by_feeid($array2); //get_feetypes();
+
+			}
 
 		}
 
@@ -973,6 +980,22 @@ class Invoice extends Admin_Controller {
 
 						}
 
+						//Get Selected_fees by id
+
+						$fees = array();
+
+						$fees_size = count($this->data['feetypes']);
+						
+							for($i = 1 ; $i <= $fees_size ; $i++){
+								$currp = $this->input->post('f'.$i);
+
+								if((int)$currp){
+
+									array_push($fees, $currp);
+
+								}
+							}
+
 
 
 						$array = array(
@@ -1002,6 +1025,8 @@ class Invoice extends Admin_Controller {
 
 
 						$this->invoice_m->update_invoice($array, $id);
+
+						$this->fees_m->update_fees_invoice($fees, $id);
 
 						$this->session->set_flashdata('success', $this->lang->line('menu_success'));
 
@@ -1085,7 +1110,14 @@ class Invoice extends Admin_Controller {
 			
 			$array2 = $this->fees_m->get_feesID_by_invoiceID($curr_id);
 
-			$this->data['included_feetypes_view'] = $this->feetypes_m->get_order_by_feeid($array2); //get_feetypes();
+			if(empty($array2)){
+
+				$this->data['included_feetypes_edit'] = array();
+			}else{
+
+				$this->data['included_feetypes_view'] = $this->feetypes_m->get_order_by_feeid($array2); //get_feetypes();
+
+			}
 
 		}
 

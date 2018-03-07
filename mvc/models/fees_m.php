@@ -48,6 +48,24 @@ class Fees_m extends MY_Model {
 
 	}
 
+	function update_fees_invoice($array, $id){
+
+		$error;
+
+		$error = $this->delete_by_invoice_id($id);
+
+		$error += $this->insert_fees_invoice($array, $id);
+		
+		return $error;
+
+	}
+
+	function delete_by_invoice_id($invoiceID){
+
+		$this->db->delete('invoice_items', array('invoice_items.invoiceID' => $invoiceID)); 
+
+	}
+
 	function get_feesID_by_invoiceID($invoiceID){
 
 		$this->db->select('feeID');

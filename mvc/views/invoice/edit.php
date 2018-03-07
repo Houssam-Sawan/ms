@@ -335,6 +335,16 @@
 
                 </form>
 
+                <?php if ($siteinfos->note==1) { ?>
+
+                    <div class="callout callout-danger">
+
+                        <p><b>Note:</b> If you need any fee type then you can add before you edit invoice.</p>
+
+                    </div>
+
+                <?php } ?>
+
             </div>
 
         </div>
