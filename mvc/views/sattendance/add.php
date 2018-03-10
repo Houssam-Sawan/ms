@@ -416,12 +416,14 @@
                                 <th class="col-sm-2"><?=$this->lang->line('attendance_email')?></th>
 
 
-
                                 <th class="col-sm-2"><?=$this->lang->line('attendance_roll')?></th>
 
 
 
                                 <th class="col-sm-2"><?=btn_attendance('', '', 'all_attendance', $this->lang->line('add_all_attendance')).$this->lang->line('action')?></th>
+
+                                <th class="col-sm-2" style="min-width:150px"><?=$this->lang->line('attendance_notes')?></th>
+
 
                             </tr>
 
@@ -528,6 +530,13 @@
                                         ?>
 
                                     </td>
+
+                                    <td data-title="<?=$this->lang->line('attendance_notes')?>">
+
+                                    <input type="text" id="attendance_notes" name="attendance_notes" >
+
+                                    </td>
+
 
                                 </tr>
 
