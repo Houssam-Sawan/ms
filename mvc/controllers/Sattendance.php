@@ -357,6 +357,10 @@ class Sattendance extends Admin_Controller {
 			} else {
 				$attendance_row = $this->sattendance_m->get_attendance($id);
 				if($attendance_row) {
+					
+					$this->sattendance_m->update_attendance(array($aday => $note), $id);
+						echo $this->lang->line('menu_success');
+					/*
 					if($attendance_row->$aday == "") {
 						$this->sattendance_m->update_attendance(array($aday => "P"), $id);
 						echo $this->lang->line('menu_success');
@@ -367,6 +371,7 @@ class Sattendance extends Admin_Controller {
 						$this->sattendance_m->update_attendance(array($aday => "P"), $id);
 						echo $this->lang->line('menu_success');
 					}
+					*/
 				}
 			}
 

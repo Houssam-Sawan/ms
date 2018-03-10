@@ -566,6 +566,14 @@
 
                         var note = document.getElementsByClassName(id)[0].value;
 
+                        var selected = $(this).prop("checked");
+
+                        if(selected){
+                            note = "P";
+                        }else if(note.length == 0){
+                            note = "A";
+                        }
+
                         //alert(note);
 
                         if(parseInt(id) && parseInt(day)) {
