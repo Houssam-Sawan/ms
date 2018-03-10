@@ -533,7 +533,7 @@
 
                                     <td data-title="<?=$this->lang->line('attendance_notes')?>">
 
-                                    <input type="text" id="attendance_notes" name="attendance_notes" >
+                                    <input type="text" class="<?=$attendance->attendanceID;?>" name="attendance_notes" value=""/>
 
                                     </td>
 
@@ -562,6 +562,12 @@
 
                         var day = "<?=$day?>";
 
+                        var noteID = id+'';
+
+                        var note = document.getElementsByClassName(id)[0].value;
+
+                        //alert(note);
+
                         if(parseInt(id) && parseInt(day)) {
 
                             $.ajax({
@@ -570,7 +576,7 @@
 
                                 url: "<?=base_url('sattendance/singl_add')?>",
 
-                                data: {"id" : id, "day" : day},
+                                data: {"id" : id, "day" : day, "note" : note},
 
                                 dataType: "html",
 

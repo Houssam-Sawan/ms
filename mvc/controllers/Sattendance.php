@@ -334,6 +334,9 @@ class Sattendance extends Admin_Controller {
 	function singl_add() {
 		$id = $this->input->post('id');
 		$day = $this->input->post('day');
+		$note = $this->input->post('note');
+		//echo ($note);
+		//echo $day;
 		if((int)$id && (int)$day) {
 			$aday = "a".abs($day);
 
@@ -358,7 +361,7 @@ class Sattendance extends Admin_Controller {
 						$this->sattendance_m->update_attendance(array($aday => "P"), $id);
 						echo $this->lang->line('menu_success');
 					} elseif($attendance_row->$aday == "P") {
-						$this->sattendance_m->update_attendance(array($aday => "A"), $id);
+						$this->sattendance_m->update_attendance(array($aday => $note), $id);
 						echo $this->lang->line('menu_success');
 					} elseif($attendance_row->$aday == "A") {
 						$this->sattendance_m->update_attendance(array($aday => "P"), $id);
