@@ -1,7 +1,7 @@
 
 #st28800end34200
 {
-    display: none;
+    /*display: none;
     /*display: table-cell;*/
 }
 
@@ -35,7 +35,9 @@
 
 @media only screen and (min-width: 800px){
 
-    #example1, #example1 thead, #example1 thead tr th , #example1 thead tr{
+    #example1, #example1 thead, #example1 thead tr th , #example1 thead tr
+    #example1 tbody tr td, #example1 tbody tr, #example1 tbody
+    {
         white-space:nowrap;
         width:0px !important;
     }

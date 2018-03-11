@@ -82,3 +82,9 @@
         </div><!-- row -->
     </div><!-- Body -->
 </div>
+
+<script type="text/javascript">
+$('#example1').dataTable( {
+  "ordering": true
+} );
+</script>

@@ -16,6 +16,7 @@
                             <th class="col-sm-2"><?=$this->lang->line('report_roll')?></th>
                             <th class="col-sm-2"><?=$this->lang->line('report_email')?></th>
                             <th class="col-sm-2"><?=$this->lang->line('report_phone')?></th>
+                            <th class="col-sm-2"><?=$this->lang->line('report_notes')?></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -24,7 +25,7 @@
                                 $flag = 0;
                                 foreach($students as $student) {
                                     if(isset($attendances[$student->studentID])) {
-                                        if($typeSortForm == 'P' && ($attendances[$student->studentID]->$day == 'A' || $attendances[$student->studentID]->$day == NULL)) {
+                                        if($typeSortForm == 'P' && ($attendances[$student->studentID]->$day != 'P' || $attendances[$student->studentID]->$day == NULL)) {
                                             continue;
                                         } elseif($typeSortForm == 'A' && $attendances[$student->studentID]->$day == 'P') {
                                             continue;
@@ -62,6 +63,9 @@
                                 <td data-title="<?=$this->lang->line('student_email')?>">
                                     <?php echo $student->phone; ?>
                                 </td>
+                                <td data-title="<?=$this->lang->line('student_phone')?>">
+                                    <?php echo $attendances[$student->studentID]->$day; ?>
+                                </td>
                            </tr>
                         <?php $i++; }
                             if(!$flag) {
@@ -86,3 +90,8 @@
         </div><!-- row -->
     </div><!-- Body -->
 </div>
+<script type="text/javascript">
+$('#example1').dataTable( {
+  "ordering": true
+} );
+</script>
