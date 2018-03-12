@@ -498,6 +498,26 @@ class Invoice extends Admin_Controller {
 
 			),
 
+			array(
+
+				'field' => 'num_of_instalments',
+
+				'label' => $this->lang->line("num_of_instalments"),
+
+				'rules' => 'trim|required|xss_clean|max_length[11]|numeric|callback_valid_number_instalments'
+
+			),
+			
+			array(
+
+				'field' => 'next_instalment_date',
+
+				'label' => $this->lang->line("next_instalment_date"),
+
+				'rules' => 'trim|required|xss_clean|max_length[10]|callback_date_valid'
+
+			),
+
 
 
 		);
@@ -3060,6 +3080,21 @@ class Invoice extends Admin_Controller {
 		if($this->input->post('amount') && $this->input->post('amount') < 0) {
 
 			$this->form_validation->set_message("valid_number", "%s is invalid number");
+
+			return FALSE;
+
+		}
+
+		return TRUE;
+
+	}
+
+	function valid_number_instalments() {	
+		$max_num_of_installments = 10;
+		
+		if($this->input->post('num_of_instalments') && ($this->input->post('num_of_instalments') < 1 || $this->input->post('num_of_instalments') > $max_num_of_installments)) {
+
+			$this->form_validation->set_message("valid_number_instalments", "%s is invalid please enter a number between 1 and 10");
 
 			return FALSE;
 

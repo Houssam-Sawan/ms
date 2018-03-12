@@ -248,6 +248,71 @@
                     </div>
 
 
+                    <?php
+
+                        if(form_error('num_of_instalments'))
+
+                            echo "<div class='form-group has-error' >";
+
+                        else
+
+                            echo "<div class='form-group' >";
+
+                    ?>
+
+                        <label for="num_of_instalments" class="col-sm-2 control-label">
+
+                            <?=$this->lang->line("num_of_instalments")?>
+
+                        </label>
+
+                        <div class="col-sm-6">
+
+                            <input type="text" class="form-control" id="num_of_instalments" name="num_of_instalments" value="<?=set_value('num_of_instalments')?>" >
+
+                        </div>
+
+                        <span class="col-sm-4 control-label">
+
+                            <?php echo form_error('num_of_instalments'); ?>
+
+                        </span>
+
+                    </div>
+
+
+                    <?php
+
+                        if(form_error('next_instalment_date'))
+
+                            echo "<div class='form-group has-error' >";
+
+                        else
+
+                            echo "<div class='form-group' >";
+
+                    ?>
+
+                        <label for="next_instalment_date" class="col-sm-2 control-label">
+
+                            <?=$this->lang->line("next_instalment_date")?>
+
+                        </label>
+
+                        <div class="col-sm-6">
+
+                            <input type="text" class="form-control" id="next_instalment_date" name="next_instalment_date" value="<?=set_value('next_instalment_date')?>" >
+
+                        </div>
+
+                        <span class="col-sm-4 control-label">
+
+                            <?php echo form_error('next_instalment_date'); ?>
+
+                        </span>
+
+                    </div>
+
 
                     <?php
 
@@ -583,6 +648,8 @@ $('#selected_fees').html(fees_input);
 
 
 $('#date').datepicker();
+$('#next_instalment_date').datepicker();
+
 
 </script>
 

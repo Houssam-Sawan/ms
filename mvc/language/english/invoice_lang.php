@@ -68,6 +68,10 @@ $lang['invoice_fully_paid'] = "Fully Paid";
 
 $lang['invoice_paymentmethod'] = 'Payment Method';
 
+$lang['num_of_instalments'] = 'Number Of Installments';
+
+$lang['next_instalment_date'] = 'Next Instalment Date';
+
 
 
 $lang['Cash'] = "Cash";
