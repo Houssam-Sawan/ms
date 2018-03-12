@@ -185,7 +185,12 @@
 
                                     <td data-title="<?=$this->lang->line('next_instalment_date')?>">
 
-                                        <?php echo date("d M Y", strtotime($invoice->next_instalment_date)) ; ?>
+                                        <?php
+                                            if($invoice->paidstatus != 2) {
+                                                echo date("d M Y", strtotime($invoice->next_instalment_date)) ; 
+                                            }
+                                            
+                                        ?>
 
                                     </td>
 
