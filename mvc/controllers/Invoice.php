@@ -787,7 +787,11 @@ class Invoice extends Admin_Controller {
 
 						'year' => date('Y'),
 
-						'deleted_at' => 1
+						'deleted_at' => 1,
+
+						'num_of_instalments' => $this->input->post("num_of_instalments"),
+
+						'next_instalment_date' => date("Y-m-d", strtotime($this->input->post("next_instalment_date"))),
 
 					);
 
@@ -801,7 +805,9 @@ class Invoice extends Admin_Controller {
 
 				 	redirect(base_url("invoice/view/$returnID"));
 
-				} else {
+				} 
+				/*
+				else {
 
 					$classesID = $this->input->post('classesID');
 
@@ -854,6 +860,7 @@ class Invoice extends Admin_Controller {
 				 	redirect(base_url("invoice/index"));
 
 				}
+				*/
 
 			}
 
