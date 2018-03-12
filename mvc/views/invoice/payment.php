@@ -29,7 +29,7 @@
                                 <?=$this->lang->line("invoice_amount")?>
                             </label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" id="amount" name="amount" value="<?=set_value('amount', $dueamount)?>" >
+                                <input type="text" class="form-control" id="amount" name="amount" value="<?=set_value('amount', $instal_amount)// $dueamount)?>" >
                             </div>
                             <span class="col-sm-4 control-label">
                                 <?php echo form_error('amount'); ?>
@@ -65,6 +65,48 @@
                             <span class="col-sm-4 control-label">
                                 <?php echo form_error('payment_method'); ?>
                             </span>
+                        </div>
+
+                        <?php
+
+                            if(form_error('next_instalment_date'))
+
+                                echo "<div class='form-group has-error' >";
+
+                            else
+
+                                echo "<div class='form-group' >";
+
+                        ?>
+
+                            <label for="next_instalment_date" class="col-sm-2 control-label">
+
+                                <?=$this->lang->line("next_instalment_date")?>
+
+                            </label>
+
+                            <div class="col-sm-6">
+
+                                <input type="text" class="form-control" id="next_instalment_date" name="next_instalment_date" value="<?=set_value('next_instalment_date', date("d-m-Y", strtotime($invoice->next_instalment_date)))?>" >
+
+                            </div>
+
+                            <span class="col-sm-4 control-label">
+
+                                <?php echo form_error('next_instalment_date'); ?>
+
+                            </span>
+
+
+                            <div class="col-sm-6">
+                                <table class="table">
+                                    <tr>
+                                        <th style="font-size: 16px;" class="col-sm-8 col-xs-8"><?=$this->lang->line('invoice_due')." (".$siteinfos->currency_code.")";?></th>
+                                        <td style="text-align: right;font-size: 16px;" class="col-sm-4 col-xs-4"><b id="tot_due_amount"><?php echo $siteinfos->currency_symbol.' '.number_format($dueamount, 2); ?></b></td>
+                                    </tr>
+                                </table>
+                            </div>
+
                         </div>
 
                         <!-- Card Options fields -->
@@ -331,4 +373,16 @@ function CheckType() {
         $('#payuInputs').hide();
     }
 }
+
+$('#amount').keyup( function(){
+    
+    var payment_val = $(this).val();
+    var total_due = <?php echo $dueamount;?>;
+    var remain = total_due - payment_val;
+    var after_change = <?php echo '"' . $siteinfos->currency_symbol .' "' ; ?> + $.number(remain, 2) ;
+    $('#tot_due_amount').html(after_change);
+});
+
+$('#next_instalment_date').datepicker();
+
 </script>

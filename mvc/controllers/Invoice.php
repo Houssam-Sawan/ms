@@ -550,6 +550,16 @@ class Invoice extends Admin_Controller {
 
 				'rules' => 'trim|required|xss_clean|max_length[11]|callback_unique_paymentmethod'
 
+			),
+
+			array(
+
+				'field' => 'next_instalment_date',
+
+				'label' => $this->lang->line("next_instalment_date"),
+
+				'rules' => 'trim|required|xss_clean|max_length[10]|callback_date_valid'
+
 			)
 
 		);
@@ -1536,7 +1546,9 @@ class Invoice extends Admin_Controller {
 
                     'assets/datepicker/datepicker.js',
 
-					'assets/select2/select2.js'
+					'assets/select2/select2.js',
+
+					'assets/custom/js/jquery.number.min.js'
 
 				)
 
@@ -1584,6 +1596,7 @@ class Invoice extends Admin_Controller {
 
 							$this->data['dueamount'] = ($this->data['invoice']->amount - ((($this->data['invoice']->amount/100) * $this->data['invoice']->discount) + $this->data['payment']->paymentamount));
 
+							$this->data['instal_amount'] = $this->data['dueamount'] / $this->data['invoice']->num_of_instalments;
 							
 
 							if($_POST) {
@@ -1638,13 +1651,19 @@ class Invoice extends Admin_Controller {
 
 										if($this->data['dueamount'] <= $this->input->post('amount')) {
 
-											$this->invoice_m->update_invoice(array('paidstatus' => 2), $id);
+											$next_inst_date = date("Y-m-d", strtotime($this->input->post("next_instalment_date")));
+
+											$this->invoice_m->update_invoice(array('paidstatus' => 2, 'next_instalment_date' => $next_inst_date), $id);
 
 										} else {
 
-											$this->invoice_m->update_invoice(array('paidstatus' => 1), $id);
+											$this->invoice_m->update_invoice(array('paidstatus' => 1, 'next_instalment_date' => null), $id);
 
 										}
+
+										
+
+										//$this->invoice_m->update_invoice(array('next_instalment_date' => $next_inst_date), $id);
 
 										$this->session->set_flashdata('success', 'Payment successful!');
 

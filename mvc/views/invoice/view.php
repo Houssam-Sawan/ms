@@ -96,7 +96,9 @@
                 ?>
                 <br>
                 <?php
-                    echo $this->lang->line("next_instalment_date"). " : " .date('d M Y', strtotime($invoice->next_instalment_date));
+                    if($invoice->paidstatus != 2) {
+                        echo $this->lang->line("next_instalment_date"). " : " .date('d M Y', strtotime($invoice->next_instalment_date));
+                    }
                 ?>
 
 		    </div><!-- /.col -->
