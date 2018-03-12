@@ -156,3 +156,14 @@ $lang['email'] = 'Email';
 
 $lang['phone'] = 'Phone';
 
+$lang['inst1'] = 'First Installment';
+$lang['inst2'] = 'Second Installment';
+$lang['inst3'] = 'Third Installment';
+$lang['inst4'] = 'Forth Installment';
+$lang['inst5'] = 'Fifth Installment';
+$lang['inst6'] = 'Sixth Installment';
+$lang['inst7'] = 'Seventh Installment';
+$lang['inst8'] = 'Eighth Installment';
+$lang['inst9'] = 'Nineth Installment';
+$lang['inst10'] = 'Tenth Installment';
+

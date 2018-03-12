@@ -167,11 +167,20 @@
                             <th class="col-sm-8 col-xs-8"><?=$this->lang->line('invoice_total')." (".$siteinfos->currency_code.")";?></th>
                             <td style="text-align: right;" class="col-sm-4 col-xs-4"><b><?php echo $siteinfos->currency_symbol." ".number_format(($invoice->amount - $discountAmount), 2); ?></b></td>
                         </tr>
-                        <?php $paymentAmount = 0; if(count($payments)) { foreach ($payments as $key => $payment) { $paymentAmount += $payment->paymentamount ?>
+                        <?php 
+                            $paymentAmount = 0; 
+                            $payment_count = 0;
+                            if(count($payments)) { 
+                                foreach ($payments as $key => $payment) { 
+                                    $paymentAmount += $payment->paymentamount ;
+                                    $payment_count++;
+                                    $curr_inst = 'inst'.$payment_count;
+                        ?>
                              <tr>
-                                <th class="col-sm-8 col-xs-8"><?=$this->lang->line($payment->paymenttype).' '.$this->lang->line('invoice_made');?></th>
-                                <td style="text-align: right;" class="col-sm-4 col-xs-4"><b><?=$siteinfos->currency_symbol.' '.number_format($payment->paymentamount, 2)?></b></td>
+                                <th class="col-sm-9 col-xs-9"><?=$this->lang->line($payment->paymenttype).'    ( '. $this->lang->line($curr_inst).', ' . date("d M Y", strtotime($payment->paymentdate)).')';//$this->lang->line('invoice_made');?></th>
+                                <td style="text-align: right;" class="col-sm-3 col-xs-43"><b><?=$siteinfos->currency_symbol.' '.number_format($payment->paymentamount, 2)?></b></td>
                             </tr>
+                            
                         <?php } } ?>  
                         
 
