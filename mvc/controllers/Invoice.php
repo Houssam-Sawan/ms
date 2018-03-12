@@ -1651,19 +1651,17 @@ class Invoice extends Admin_Controller {
 
 										if($this->data['dueamount'] <= $this->input->post('amount')) {
 
-											$next_inst_date = date("Y-m-d", strtotime($this->input->post("next_instalment_date")));
-
-											$this->invoice_m->update_invoice(array('paidstatus' => 2, 'next_instalment_date' => $next_inst_date), $id);
+											$this->invoice_m->update_invoice(array('paidstatus' => 2), $id);
 
 										} else {
 
-											$this->invoice_m->update_invoice(array('paidstatus' => 1, 'next_instalment_date' => null), $id);
+											$this->invoice_m->update_invoice(array('paidstatus' => 1), $id);
 
 										}
 
-										
+										$next_inst_date = date("Y-m-d", strtotime($this->input->post("next_instalment_date")));
 
-										//$this->invoice_m->update_invoice(array('next_instalment_date' => $next_inst_date), $id);
+										$this->invoice_m->update_invoice(array('next_instalment_date' => $next_inst_date), $id);
 
 										$this->session->set_flashdata('success', 'Payment successful!');
 
