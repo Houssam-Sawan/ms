@@ -64,7 +64,7 @@ $currIP = getIpAddress();
 //if (!preg_match("/^(127\.0\.|10\.0\.).+/i", $currIP) || !preg_match("/^(localhost)/", $currIP)) {
 if (!preg_match("/::1/", $currIP)) {
 
-    $_SERVER['CI_ENV'] = 'production';
+    //$_SERVER['CI_ENV'] = 'production';
 }
 
 define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
