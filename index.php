@@ -60,8 +60,10 @@
 
 require_once __DIR__.'/mvc/helpers/site_helper.php';
 
+$currIP = getIpAddress();
+//if (!preg_match("/^(127\.0\.|10\.0\.).+/i", $currIP) || !preg_match("/^(localhost)/", $currIP)) {
+if (!preg_match("/::1/", $currIP)) {
 
-if (!preg_match("/^(127\.0\.|10\.0\.).+/i", getIpAddress())) {
     $_SERVER['CI_ENV'] = 'production';
 }
 
