@@ -15,7 +15,7 @@
     
     padding: 2px !important;
     white-space:nowrap;
-    width: 50px !important;
+    
 }
 
 #table tbody tr td div span
@@ -42,19 +42,37 @@
         width:0px !important;
     }
 
+    #table,
+    #table tbody,
+    #table tbody tr,
+    #table tbody tr td {
+
+        width: 50px !important;
+
+    }
+
 }
 
 @media only screen and (max-width: 800px){
 
-    #example1 { /*, #example1 thead, #example1 thead tr th , #example1 thead tr{*/
+    #example1, #table tbody tr td { /*, #example1 thead, #example1 thead tr th , #example1 thead tr{*/
         
         width:auto !important;
 
     }
 
+    
    /* #example1 tbody tr td */
    #hide-table td{
+
        padding-left: 70px;
+
+   }
+
+   #example1 td{
+
+    padding-left: 150px;
+
    }
    
 }

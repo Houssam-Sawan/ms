@@ -62,7 +62,7 @@
 
                                 <th><?=$this->lang->line('invoice_classesID')?></th>
 
-                                <th style="max-width:200px;white-space:normal;"><?=$this->lang->line('invoice_feetype')?></th>
+                                <th style="max-width:150px;white-space:normal;"><?=$this->lang->line('invoice_feetype')?></th>
 
                                 <th><?=$this->lang->line('invoice_amount')?></th>
 
@@ -71,6 +71,8 @@
                                 <th><?=$this->lang->line('invoice_status')?></th>
 
                                 <th><?=$this->lang->line('invoice_date')?></th>
+
+                                <th><?=$this->lang->line('next_instalment_date')?></th>
 
                                 <?php if(permissionChecker('invoice_view') || permissionChecker('invoice_edit') || permissionChecker('invoice_delete')) { ?>
 
@@ -112,7 +114,7 @@
 
 
 
-                                    <td style="max-width:200px;white-space:normal;" data-title="<?=$this->lang->line('invoice_feetype')?>">
+                                    <td style="max-width:150px;white-space:normal;" data-title="<?=$this->lang->line('invoice_feetype')?>">
 
                                         <?php echo $invoice->feetype; ?>
 
@@ -177,6 +179,13 @@
                                     <td data-title="<?=$this->lang->line('invoice_date')?>">
 
                                         <?php echo date("d M Y", strtotime($invoice->date)) ; ?>
+
+                                    </td>
+
+
+                                    <td data-title="<?=$this->lang->line('next_instalment_date')?>">
+
+                                        <?php echo date("d M Y", strtotime($invoice->next_instalment_date)) ; ?>
 
                                     </td>
 
