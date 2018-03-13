@@ -1596,7 +1596,7 @@ class Invoice extends Admin_Controller {
 
 							$this->data['dueamount'] = ($this->data['invoice']->amount - ((($this->data['invoice']->amount/100) * $this->data['invoice']->discount) + $this->data['payment']->paymentamount));
 
-							$this->data['instal_amount'] = $this->data['dueamount'] / $this->data['invoice']->num_of_instalments;
+							$this->data['instal_amount'] = ($this->data['invoice']->amount - ((($this->data['invoice']->amount/100) * $this->data['invoice']->discount)) )/ $this->data['invoice']->num_of_instalments;
 							
 
 							if($_POST) {
