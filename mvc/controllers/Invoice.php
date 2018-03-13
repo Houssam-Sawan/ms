@@ -1174,7 +1174,7 @@ class Invoice extends Admin_Controller {
 
 				if($this->data['invoice'] && ($this->data['invoice']->studentID == $getstudent->studentID)) {
 
-					$this->data['payments'] = $this->payment_m->get_order_by_payment(array('invoiceID' => $id));
+					$this->data['payments'] = $this->payment_m->get_payment_order_by_id(array('invoiceID' => $id));
 
 					$this->data["student"] = $this->student_m->get_student($this->data["invoice"]->studentID);
 
@@ -1232,7 +1232,7 @@ class Invoice extends Admin_Controller {
 
 								$this->data["student"] = $this->student_m->get_student($this->data["invoice"]->studentID);
 
-								$this->data['payments'] = $this->payment_m->get_order_by_payment(array('invoiceID' => $id));
+								$this->data['payments'] = $this->payment_m->get_payment_order_by_id(array('invoiceID' => $id));
 
 								$this->data["subview"] = "invoice/view";
 
@@ -1288,7 +1288,7 @@ class Invoice extends Admin_Controller {
 
 				if($this->data["invoice"]) {
 
-					$this->data['payments'] = $this->payment_m->get_order_by_payment(array('invoiceID' => $id));
+					$this->data['payments'] = $this->payment_m->get_payment_order_by_id(array('invoiceID' => $id));
 
 					$this->data["student"] = $this->student_m->get_student($this->data["invoice"]->studentID);
 
