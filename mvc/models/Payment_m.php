@@ -156,6 +156,12 @@ class Payment_m extends MY_Model {
 
 	}
 
+	function delete_by_invoice_id($invoiceID){
+
+		$this->db->delete('payment', array('payment.invoiceID' => $invoiceID)); 
+
+	}
+
 }
 
 

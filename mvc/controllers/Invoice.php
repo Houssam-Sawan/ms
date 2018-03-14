@@ -1115,6 +1115,8 @@ class Invoice extends Admin_Controller {
 
 				$this->fees_m->delete_by_invoice_id($id);
 
+				$this->payment_m->delete_by_invoice_id($id);
+
 				$this->session->set_flashdata('success', $this->lang->line('menu_success'));
 
 				redirect(base_url('invoice/index'));
