@@ -838,6 +838,58 @@ class Routine extends Admin_Controller {
 
 	}
 
+
+	function alter_routine(){
+
+		$routines = $this->routine_m->get_routine_old();
+
+		$c = 0;
+		foreach($routines as $routine){
+
+			$array = array(
+
+				//"routineID" => $routine->routineID,
+
+				/*"classesID" => $routine->classesID,
+
+				"sectionID" => $routine->sectionID,
+
+				"subjectID" => $routine->subjectID,
+
+				'schoolyearID' => $routine->schoolyearID,
+
+				"day" => $routine->day,
+
+				'teacherID' => $routine->teacherID,
+
+				"start_time" => $routine->start_time,
+				*/
+
+				"start_time_sec" => $this->routine_m->timetosecond($routine->start_time),
+
+				//"end_time" => $routine->end_time,
+
+				"end_time_sec" => $this->routine_m->timetosecond($routine->end_time)
+
+				//"room" => $routine->room,
+
+			);
+
+			//print_r($array);
+			//echo'<br>';
+			$c++;
+
+
+
+			$this->routine_m->update_routine($array, $routine->routineID);
+			
+		}
+
+		echo $c;
+
+		//$this->routine_m->insert_routine($array);
+	}
+
 }
 
 

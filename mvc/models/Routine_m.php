@@ -163,6 +163,15 @@ class Routine_m extends MY_Model {
 
 	}
 
+
+	public function get_routine_old(){
+
+		//$query = $this->db->get('routine_old');
+		$query = $this->db->get_where('routine', array('start_time_sec' => 0));
+
+		return $query->result();
+	}
+
 	//Helper function to convert time to seconds
 
 	public function timetosecond($str_time = "00:00 AM")
