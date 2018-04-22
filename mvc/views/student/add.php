@@ -1019,7 +1019,7 @@ $('#classesID').change(function(event) {
 
     } else {
 
-       
+       //var curr_section =  $('#sectionID').val();
 
         $.ajax({
 
@@ -1037,6 +1037,13 @@ $('#classesID').change(function(event) {
 
                $('#sectionID').html(data);
 
+               $('#sectionID').val("0");
+
+               $('#s2id_sectionID > a > span.select2-chosen').html($('#sectionID > option:nth-child(1)').html());
+               
+
+               update_roll();
+
             }
 
         });
@@ -1047,10 +1054,12 @@ $('#classesID').change(function(event) {
 
 
 
-$('#sectionID').change(function(event) {
+$('#sectionID').change(update_roll);
+    
+function update_roll(event) {
 
 var classesID = $('#classesID').val();
-var sectionID = $(this).val();
+var sectionID = $('#sectionID').val();
 
 if(sectionID === '0') {
 
@@ -1085,7 +1094,7 @@ if(sectionID === '0') {
 
 }
 
-});
+}
 
 
 
