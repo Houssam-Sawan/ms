@@ -803,6 +803,8 @@ class Invoice extends Admin_Controller {
 
 						'next_instalment_date' => date("Y-m-d", strtotime($this->input->post("next_instalment_date"))),
 
+						'notes' => $this->input->post("notes"),
+
 					);
 
 					$returnID = $this->invoice_m->insert_invoice($array);

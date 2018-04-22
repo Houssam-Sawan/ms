@@ -156,6 +156,8 @@ $lang['email'] = 'Email';
 
 $lang['phone'] = 'Phone';
 
+$lang['invoice_notes'] = "Notes";
+
 $lang['inst1'] = 'First Installment';
 $lang['inst2'] = 'Second Installment';
 $lang['inst3'] = 'Third Installment';
