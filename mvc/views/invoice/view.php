@@ -195,6 +195,10 @@
 		    </div><!-- /.col -->
 		</div><!-- /.row -->
 
+        <div class="container" id="notes">
+        <h5><?=$this->lang->line('invoice_notes').': '. $invoice->notes?></h5>
+        </div>
+
 		<!-- this row will not appear when printing -->
 	</section><!-- /.content -->
 </div>
