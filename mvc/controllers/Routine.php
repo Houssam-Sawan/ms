@@ -402,7 +402,11 @@ class Routine extends Admin_Controller {
 
 					"start_time" => $this->input->post("start_time"),
 
+					"start_time_sec" => $this->routine_m->timetosecond($this->input->post("start_time")),
+
 					"end_time" => $this->input->post("end_time"),
+
+					"end_time_sec" => $this->routine_m->timetosecond($this->input->post("end_time")),
 
 					"room" => $this->input->post("room")
 

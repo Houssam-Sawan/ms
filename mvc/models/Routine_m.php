@@ -88,6 +88,10 @@ class Routine_m extends MY_Model {
 
 		$this->db->from('routine');
 
+		$this->db->order_by('routine.start_time_sec', 'ASC');
+
+		$this->db->order_by('routine.sectionID', 'ASC');
+
 		$this->db->where(array('routine.classesID' => $id, 'routine.sectionID' => $sectionID));
 
 		$this->db->join('teacher', 'teacher.teacherID = routine.teacherID', 'LEFT');

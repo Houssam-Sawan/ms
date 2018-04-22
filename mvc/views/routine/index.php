@@ -436,9 +436,13 @@ $us_days = array('MONDAY' => $this->lang->line('monday'), 'TUESDAY' => $this->la
         $("td").css({'display':'table-cell'});
     }
 
-    $('#start_time').timepicker();
+    $('#start_time').timepicker({'defaultTime': '8:00 AM'});
 
-    $('#end_time').timepicker();
+   // $('#start_time').val("8:00 AM");
+
+    $('#end_time').timepicker({'defaultTime': '2:30 PM'});
+
+  //  $('#end_time').val("2:30 PM");
 
     /*
  tables1 = document.getElementsByTagName("table");
