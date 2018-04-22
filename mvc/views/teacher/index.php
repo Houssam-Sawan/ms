@@ -29,6 +29,7 @@
                                 <th class="col-sm-2"><?=$this->lang->line('slno')?></th>
                                 <th class="col-sm-2"><?=$this->lang->line('teacher_photo')?></th>
                                 <th class="col-sm-2"><?=$this->lang->line('teacher_name')?></th>
+                                <th class="col-sm-2"><?=$this->lang->line('teacher_phone')?></th>
                                 <th class="col-sm-2"><?=$this->lang->line('teacher_email')?></th>
                                 <?php if(permissionChecker('teacher_edit')){ ?>
                                 <th class="col-sm-2"><?=$this->lang->line('teacher_status')?></th>
@@ -57,6 +58,9 @@
                                     </td>
                                     <td data-title="<?=$this->lang->line('teacher_name')?>">
                                         <?php echo $teacher->name; ?>
+                                    </td>
+                                    <td data-title="<?=$this->lang->line('teacher_phone')?>">
+                                        <?php echo $teacher->phone; ?>
                                     </td>
                                     <td data-title="<?=$this->lang->line('teacher_email')?>">
                                         <?php echo $teacher->email; ?>

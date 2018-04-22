@@ -291,7 +291,8 @@ class Student extends Admin_Controller {
 		}
 		$this->data['sectionID'] = $this->input->post("sectionID");
 
-
+		$sectionID = $this->input->post("sectionID");
+		
 		if($sectionID != 0)
 		{
 			$rolls = $this->student_m->get_max_roll("", $classesID, $sectionID);
