@@ -204,6 +204,24 @@ class Routine_m extends MY_Model {
 		return $query->result();
 	}
 
+
+	public function get_routine_12_pm(){
+
+		//$this->db->select('FROM routine WHERE start_time_sec > 86340 or end_time_sec > 86340');
+
+		$this->db->select('*');
+
+		$this->db->from('routine');
+
+		$this->db->where(array('start_time_sec >' => 86340 ));
+
+		$this->db->or_where(array('end_time_sec >' => 86340));
+
+		$query = $this->db->get(); //_where('routine', array('start_time_sec >' => 86340 , 'end_time_sec >' => 86340));
+
+		return $query->result();
+	}
+
 	//Helper function to convert time to seconds
 
 	public function timetosecond($str_time = "00:00 AM")
@@ -212,7 +230,7 @@ class Routine_m extends MY_Model {
 
 		sscanf($str_time, "%d:%d %s", $hours, $minutes, $mm);
 
-		$hours = (($mm == "AM")? $hours :$hours+=12);
+		$hours = (($mm == "AM" || $hours == 12)? $hours :$hours+=12);
 
 		$time_seconds =  ($hours * 3600 + $minutes * 60 ) ;
 

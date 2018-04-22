@@ -379,7 +379,7 @@ $us_days = array('MONDAY' => $this->lang->line('monday'), 'TUESDAY' => $this->la
         var hour = parseInt(res[0]);
         var min = parseInt(res[1]);
         var med = res[2];
-        hour = (med == "AM")? hour : (hour + 12);
+        hour = (med == "AM" || hour == 12)? hour : (hour + 12);
 
     return hour * 3600 + min * 60;
     }

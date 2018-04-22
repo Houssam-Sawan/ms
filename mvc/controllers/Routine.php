@@ -848,51 +848,54 @@ class Routine extends Admin_Controller {
 
 		$routines = $this->routine_m->get_routine_old();
 
+		echo '<br>Rows to edit: '. count($routines)  . '<br>';
+
 		$c = 0;
 		foreach($routines as $routine){
 
 			$array = array(
 
-				//"routineID" => $routine->routineID,
-
-				/*"classesID" => $routine->classesID,
-
-				"sectionID" => $routine->sectionID,
-
-				"subjectID" => $routine->subjectID,
-
-				'schoolyearID' => $routine->schoolyearID,
-
-				"day" => $routine->day,
-
-				'teacherID' => $routine->teacherID,
-
-				"start_time" => $routine->start_time,
-				*/
-
 				"start_time_sec" => $this->routine_m->timetosecond($routine->start_time),
 
-				//"end_time" => $routine->end_time,
 
 				"end_time_sec" => $this->routine_m->timetosecond($routine->end_time)
 
-				//"room" => $routine->room,
-
 			);
 
-			//print_r($array);
-			//echo'<br>';
 			$c++;
-
-
 
 			$this->routine_m->update_routine($array, $routine->routineID);
 			
 		}
 
-		echo $c;
+		echo '<br>Edited rows: ' . $c  . '<br>';
+	}
 
-		//$this->routine_m->insert_routine($array);
+	function fix_12_pm(){
+
+		$routines = $this->routine_m->get_routine_12_pm();
+
+		echo '<br>Rows to edit: '. count($routines)  . '<br>';
+
+		$c = 0;
+		foreach($routines as $routine){
+
+			$array = array(
+
+				"start_time_sec" => $this->routine_m->timetosecond($routine->start_time),
+
+
+				"end_time_sec" => $this->routine_m->timetosecond($routine->end_time)
+
+			);
+
+			$c++;
+
+			$this->routine_m->update_routine($array, $routine->routineID);
+			
+		}
+
+		echo '<br>Edited rows: ' . $c  . '<br>';
 	}
 
 }
