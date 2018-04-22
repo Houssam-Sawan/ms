@@ -160,8 +160,9 @@ class Routine extends Admin_Controller {
 
 				$this->data['classes'] = $this->routine_m->get_classes();
 
-				$this->data['routines'] = $this->routine_m->get_join_all($id);
+				//$this->data['routines'] = $this->routine_m->get_join_all($id);
 
+				$this->data['routines'] = $this->routine_m->get_join_all_order_by_start_time_sectionId($id);
 
 
 

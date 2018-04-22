@@ -111,6 +111,34 @@ class Routine_m extends MY_Model {
 	}
 
 
+	function get_join_all_order_by_start_time_sectionId($classesID) {
+
+		$this->db->select('*');
+
+		$this->db->from('routine');
+
+		$this->db->order_by('routine.start_time_sec', 'ASC');
+
+		$this->db->order_by('routine.sectionID', 'ASC');
+
+		$this->db->where(array('routine.classesID' => $classesID));
+
+		$this->db->join('teacher', 'teacher.teacherID = routine.teacherID', 'LEFT');
+
+		$this->db->join('classes', 'classes.classesID = routine.classesID', 'LEFT');
+
+		$this->db->join('section', 'section.sectionID = routine.sectionID', 'LEFT');
+
+		$this->db->join('subject', 'subject.subjectID = routine.subjectID AND subject.classesID = routine.classesID', 'LEFT');
+
+
+
+		$query = $this->db->get();
+
+		return $query->result();
+
+	}
+
 
 	function get_routine($array=NULL, $signal=FALSE) {
 
