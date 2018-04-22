@@ -401,7 +401,7 @@
 
                         <div class="col-sm-6">
 
-                            <input type="text" class="form-control" id="notes" name="notes" value="<?=set_value('notes', $invoice->notes)?>" >
+                            <textarea class="form-control" style="resize:none;" id="notes" name="notes"><?=set_value('notes', $invoice->notes)?></textarea>
 
                         </div>
 

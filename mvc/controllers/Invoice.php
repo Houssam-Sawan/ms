@@ -518,6 +518,16 @@ class Invoice extends Admin_Controller {
 
 			),
 
+			array(
+
+				'field' => 'notes', 
+
+				'label' => $this->lang->line("invoice_notes"), 
+
+				'rules' => 'trim|max_length[200]|xss_clean'
+
+			)
+
 
 
 		);
