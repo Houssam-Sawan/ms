@@ -1051,6 +1051,8 @@ class Invoice extends Admin_Controller {
 
 							'date' => $date,
 
+							'notes' => $this->input->post("notes"),
+
 							'paidstatus' => $status,
 
 							'userID' => $this->session->userdata('loginuserID'),

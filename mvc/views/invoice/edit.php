@@ -381,6 +381,39 @@
 
                     </div>
 
+                    <?php
+
+                        if(form_error('notes'))
+
+                            echo "<div class='form-group has-error' >";
+
+                        else
+
+                            echo "<div class='form-group' >";
+
+                    ?>
+
+                        <label for="notes" class="col-sm-2 control-label">
+
+                            <?=$this->lang->line("invoice_notes")?>
+
+                        </label>
+
+                        <div class="col-sm-6">
+
+                            <input type="text" class="form-control" id="notes" name="notes" value="<?=set_value('notes', $invoice->notes)?>" >
+
+                        </div>
+
+                        <span class="col-sm-4 control-label">
+
+                            <?php echo form_error('notes'); ?>
+
+                        </span>
+
+                    </div>
+
+
                     <div class="form-group hidden">
                     <div id="selected_fees" class="">
                     
