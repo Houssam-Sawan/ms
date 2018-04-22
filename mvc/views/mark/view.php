@@ -17,6 +17,18 @@
     .table-bordered > tbody > tr > td {
         border-right: 1px solid #D1D8DE;
     }
+
+    #example2, 
+    #example2 thead, 
+    #example2 thead tr th , 
+    #example2 thead tr
+    #example2 tbody tr td, 
+    #example2 tbody tr, 
+    #example2 tbody
+    {
+        white-space:nowrap;
+        width:450px !important;
+    }
 </style>
 <?php if(count($student)) { ?>
     <div class="well">
@@ -143,7 +155,7 @@
                         echo '</h3>';
                         echo '</div>';
 
-                        echo "<table class=\"table table-striped table-bordered\">";
+                        echo "<table id='example2' class=\"table table-striped table-bordered\">";
                         echo "<thead>";
                         echo "<tr>";
                         echo "<th class='text-center' rowspan='2' style='background-color:#951200;color:#fff;'>";
@@ -268,19 +280,19 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div id="hide-table">
-                        <table class="table table-striped table-bordered">
+                        <table id='example2' class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th><?=$this->lang->line('mark_subject')?></th>
+                                <th class='text-center' rowspan='2' style='background-color:#951200;color:#fff;'><?=$this->lang->line('mark_subject')?></th>
                                 <?php
                                     foreach ($exams as $exam) {
                                         ?>
-                                        <th colspan="2"><?=$exam->exam?><span class="pull-right"><?=$exam->percentage?>%</span></th>
+                                        <th colspan="2" style="min-width:100px;"><?=$exam->exam?><span class="pull-right"><?=$exam->percentage?>%</span></th>
                                         <?php
                                     }
                                 ?>
-                                <th><?=$this->lang->line('mark_final')?></th>
-                                <th><?=$this->lang->line('mark_gk')?></th>
+                                <th class='text-center' rowspan='2' style='background-color:#951200;color:#fff;'><?=$this->lang->line('mark_final')?></th>
+                                <th class='text-center' rowspan='2' style='background-color:#951200;color:#fff;'><?=$this->lang->line('mark_gk')?></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -383,7 +395,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div id="hide-table">
-                        <table id="" class="table table-striped table-bordered table-hover dataTable no-footer">
+                        <table id='example2' class="table table-striped table-bordered table-hover dataTable no-footer">
                             <thead>
                             <tr>
                                 <th><?=$this->lang->line('slno')?></th>
@@ -487,6 +499,24 @@
 </form>
 <!-- email end here -->
 <script language="javascript" type="text/javascript">
+
+    function printDiv(divID) {
+        //Get the HTML of div
+        var divElements = document.getElementById(divID).innerHTML;
+        //Get the HTML of whole page
+        var oldPage = document.body.innerHTML;
+
+        //Reset the page's HTML with div's HTML only
+        document.body.innerHTML =
+            "<html><head><title></title></head><body>" +
+            divElements + "</body>";
+
+        //Print Page
+        window.print();
+
+        //Restore orignal HTML
+        document.body.innerHTML = oldPage;
+    }                                
 
     function check_email(email) {
         var status = false;
