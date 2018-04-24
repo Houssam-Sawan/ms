@@ -92,6 +92,10 @@
 
                                                 <th class="col-sm-2"><?=$this->lang->line('tmember_roll')?></th>
 
+                                                <th class="col-sm-2"><?=$this->lang->line('tmember_phone')?></th>
+
+                                                <th class="col-sm-2"><?=$this->lang->line('tmember_address')?></th>
+
                                                 <th class="col-sm-2"><?=$this->lang->line('tmember_email')?></th>
 
                                                 <?php if(permissionChecker('tmember_add') || permissionChecker('tmember_edit') || permissionChecker('tmember_delete') || permissionChecker('tmember_view')) { ?>
@@ -149,6 +153,20 @@
                                                     <td data-title="<?=$this->lang->line('tmember_roll')?>">
 
                                                         <?php echo $student->roll; ?>
+
+                                                    </td>
+
+
+                                                    <td data-title="<?=$this->lang->line('tmember_phone')?>">
+
+                                                        <?php echo $student->phone; ?>
+
+                                                    </td>
+
+
+                                                    <td data-title="<?=$this->lang->line('tmember_address')?>">
+
+                                                        <?php echo $student->address; ?>
 
                                                     </td>
 
@@ -224,6 +242,10 @@
 
                                                         <th class="col-sm-2"><?=$this->lang->line('tmember_roll')?></th>
 
+                                                        <th class="col-sm-2"><?=$this->lang->line('tmember_phone')?></th>
+
+                                                        <th class="col-sm-2"><?=$this->lang->line('tmember_address')?></th>
+
                                                         <th class="col-sm-2"><?=$this->lang->line('tmember_email')?></th>
 
                                                         <?php if(permissionChecker('tmember_add') || permissionChecker('tmember_edit') || permissionChecker('tmember_delete') || permissionChecker('tmember_view')) { ?>
@@ -281,6 +303,20 @@
                                                             <td data-title="<?=$this->lang->line('tmember_roll')?>">
 
                                                                 <?php echo $student->roll; ?>
+
+                                                            </td>
+
+
+                                                            <td data-title="<?=$this->lang->line('tmember_phone')?>">
+
+                                                                <?php echo $student->phone; ?>
+
+                                                            </td>
+
+
+                                                            <td data-title="<?=$this->lang->line('tmember_address')?>">
+
+                                                                <?php echo $student->address; ?>
 
                                                             </td>
 
@@ -372,6 +408,10 @@
 
                                                 <th class="col-sm-2"><?=$this->lang->line('tmember_roll')?></th>
 
+                                                <th class="col-sm-2"><?=$this->lang->line('tmember_phone')?></th>
+
+                                                <th class="col-sm-2"><?=$this->lang->line('tmember_address')?></th>
+
                                                 <th class="col-sm-2"><?=$this->lang->line('tmember_email')?></th>
 
                                                 <?php if(permissionChecker('tmember_add') || permissionChecker('tmember_edit') || permissionChecker('tmember_delete') || permissionChecker('tmember_view')) { ?>
@@ -429,6 +469,20 @@
                                                     <td data-title="<?=$this->lang->line('tmember_roll')?>">
 
                                                         <?php echo $student->roll; ?>
+
+                                                    </td>
+
+
+                                                    <td data-title="<?=$this->lang->line('tmember_phone')?>">
+
+                                                        <?php echo $student->phone; ?>
+
+                                                    </td>
+
+
+                                                    <td data-title="<?=$this->lang->line('tmember_address')?>">
+
+                                                        <?php echo $student->address; ?>
 
                                                     </td>
 

@@ -18,6 +18,7 @@
                             ?>
                                 <th class="col-sm-2"><?=$this->lang->line('report_class')?></th>
                                 <th class="col-sm-1"><?=$this->lang->line('report_section')?></th>
+                                <th class="col-sm-1"><?=$this->lang->line('report_address')?></th>
                             <?php
                                 }
                             ?>
@@ -57,6 +58,7 @@
                                 ?>
                                     <td data-title="<?=$this->lang->line('report_class')?>"><?php echo $classes[$student->classesID]->classes; ?></td>
                                     <td data-title="<?=$this->lang->line('report_section')?>"><?php echo $sections[$student->sectionID]->section; ?></td>
+                                    <td data-title="<?=$this->lang->line('report_address')?>"><?php echo $student->address; ?></td>
                                 <?php
                                     }
                                 ?>

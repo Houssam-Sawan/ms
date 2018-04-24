@@ -16,6 +16,8 @@ $lang['transport_driver'] = "Driver Name";
 
 $lang['transport_phone'] = "Phone";
 
+$lang['transport_address'] = "Address";
+
 $lang['transport_vehicle'] = "Number of Vehicle";
 
 $lang['transport_fare'] = "Route Fare";
