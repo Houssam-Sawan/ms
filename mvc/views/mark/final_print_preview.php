@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <title><?php echo $panel_title; ?></title>
-
 <style type="text/css">
     #page-wrap {
         width: 700px;
@@ -237,23 +236,41 @@
 </head>
   <body>
     <div id="page-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <table class="table-bordered" width="100%" style="text-align: center;">
+                    <tr>
+                        <td width="" ></td>
+                        <td>
+                            <?php
+                                if($siteinfos->photo) {
+                                    $array = array(
+                                        "src" => base_url('uploads/images/'.$siteinfos->photo),
+                                        'width' => '200px',
+                                        'height' => '200px',
+                                        "style" => "margin:auto;"
+                                    );
+                                    echo img($array)."<br>";
+                                }
+                            ?>
+                        </td>
+                        <td width="" ></td>
+                    </tr>
+
+                    <tr>
+                        <td width="" ></td>
+                        <td>
+                            <h2>Cambridge International School - Queen Anne</h2>
+                        </td>
+                        <td width="" ></td>
+                    </tr>
+                </table>  
+            </div>
+        </div>
+    </div>
       <table width="100%" style="margin: 50px 0 20px 0;">
         <tr>
-          <td width="45%">
-              <table class="table-bordered table-condensed">
-                <tr width="100%">
-                    <th colspan="2">
-                        Work with Grading key
-                    </th>
-                </tr>
-                <?php foreach ($grades as $grade) { ?>
-                <tr>
-                    <td width="50%"><?=$grade->grade;?></td>
-                    <td width="50%"><?=$grade->gradefrom;?>-<?=$grade->gradeupto;?></td>
-                </tr>
-                <?php } ?>
-              </table>
-          </td>
           <td width="10%" style="vertical-align: top; text-align: right;">
               <?php
                   if($siteinfos->photo) {
