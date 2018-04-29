@@ -42,8 +42,8 @@
       font-size: 12px;
     }
     th {
-        background-color: #951200;
-        color: #ffffff;
+        background-color: #ff0000;
+        color: #000000;
     }
     td,
     th {
@@ -225,13 +225,55 @@
       color: #707478;
       text-decoration: none;
     }
+    /*
     strong {
         color: #707478;
     }
+    */
     td > p > span
     {
         display: block;
     }
+
+    .black-line{
+        background-color: black;
+        height: 3px !important;
+    }
+
+    #std-info-table td{
+        padding-top:10px;
+        padding-bottom: 5px;
+    }
+
+    #marks-table tbody tr td{
+        border-bottom: 1px dotted #ccc !important;
+        padding: 5px;
+    }
+
+    #marks-table tbody tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+
+    #marks-table-notes-wrap{
+        position: inline-block;
+        float:right;
+        padding-top: 10px;
+        width: 200px;
+        vertical-align:middle;
+        
+
+    }
+
+    #marks-table-notes{
+        border: 2px solid #ccc;
+        width: 200px;
+    }
+
+    #marks-table-notes p{
+        font-size: 12px;
+        margin: 5px 2px;
+    }
+
 </style>
 </head>
   <body>
@@ -241,7 +283,7 @@
             <div class="col-md-4 col-md-offset-4">
                 <table class="table-bordered" width="100%" style="text-align: center;">
                     <tr>
-                        <td width="" ></td>
+                        <td></td>
                         <td>
                             <?php
                                 if($siteinfos->photo) {
@@ -255,105 +297,60 @@
                                 }
                             ?>
                         </td>
-                        <td width="" ></td>
+                        <td></td>
                     </tr>
 
                     <tr>
-                        <td width="" ></td>
+                        <td></td>
                         <td>
-                            <h2>Cambridge International School - Queen Anne</h2>
+                            <h2>
+                                <?php
+                                    echo $siteinfos->sname;
+                                ?>
+                            </h2>
                         </td>
-                        <td width="" ></td>
+                        <td></td>
                     </tr>
-                </table>  
+                    <tr>
+                        <td></td>
+                        <td>
+                            <h3>Assessments Results</h3>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+                <br>
+                <div class="black-line"></div>
+
+                <table class="table-bordered" width="100%" style="text-align: center;" >
+                    <tr id="std-info-table">
+                        <td width="25%">STUDENT NAME: </td>
+                        <td width="25%"> <strong><?php  echo $student->name; ?></strong> </td>
+                        <td>CLASS</td>
+                        <td><strong> <?php echo $section->category ; ?> </strong></td>
+                        <td>ACADEMIC YEAR</td>
+                        <td><strong><?php  echo  $academic_year->schoolyear; ?></strong></td>
+                    </tr>   
+
+                    <tr id="std-info-table">
+                        <td width="25%">CLASS TEACHER: </td>
+                        <td width="25%"> <strong><?php  echo $teacher->name; ?></strong> </td>
+                        <td>Roll no.</td>
+                        <td> <strong><?php  echo $student->roll; ?></strong> </td>
+                        <td>Passing Percentage:</td>
+                        <td><strong> 50.0 % </strong></td>
+                    </tr> 
+
+                </table>
+
+                <div class="black-line"></div>
+                <br>
+
             </div>
         </div>
     </div>
-      <table width="100%" style="margin: 50px 0 20px 0;">
-        <tr>
-          <td width="10%" style="vertical-align: top; text-align: right;">
-              <?php
-                  if($siteinfos->photo) {
-                      $array = array(
-                          "src" => base_url('uploads/images/'.$siteinfos->photo),
-                          'width' => '50px',
-                          'height' => '50px',
-                          "style" => "margin-right:0px;"
-                      );
-                      echo img($array)."<br>";
-                  }
-              ?>
-          </td>
-          <td width="45%" style="vertical-align: top; padding-top: 5px;">
-              <h2>
-                  <?php
-                      echo $siteinfos->sname;
-                  ?>
-              </h2>
-              <p>
-                  <span><?=$siteinfos->address;?></span><br>
-                  <span><?=$siteinfos->phone;?></span><br>
-                  <span><?=$siteinfos->email;?></span>
-              </p>
-          </td>
-        </tr>
-      </table>
-      <table width="100%" style="margin: 0px 0 20px 0;">
-        <tr>
-            <td width="45%">
-                <table class="table-bordered table-condensed">
-                    <tr width="100%">
-                        <th><?=$this->lang->line('slno')?></th>
-                        <th><?=$this->lang->line('infraction_category')?></th>
-                        <th><?=$this->lang->line('infraction_category_code')?></th>
-                        <th><?=$this->lang->line('infraction_created_at')?></th>
-                    </tr>
-                    <tbody>
-                    <?php if(count($infractions)) {$i = 1; foreach($infractions as $infraction) { ?>
-                        <tr width="100%">
-                            <td data-title="<?=$this->lang->line('slno')?>">
-                                <?php echo $i; ?>
-                            </td>
-                            <td data-title="<?=$this->lang->line('infraction_category')?>">
-                                <?php echo $infraction->infraction_category; ?>
-                            </td>
-                            <td data-title="<?=$this->lang->line('infraction_category_code')?>">
-                                <?php echo $infraction->infraction_category_code; ?>
-                            </td>
-                            <td data-title="<?=$this->lang->line('infraction_created_at')?>">
-                                <?php echo date('d M Y', strtotime($infraction->infraction_created_at)); ?>
-                            </td>
-                        </tr>
-                        <?php $i++; }} ?>
-                    </tbody>
-                </table>
-            </td>
-            <td  width="11%" style="vertical-align: top; text-align: right; margin-left: 5px;">
-                <?php
-                    if(count($student)) {
-                        $array = array(
-                            "src" => base_url('uploads/images/'.$student->photo),
-                            'width' => '50px',
-                            'height' => '50px',
-                            "style" => "margin-bottom:5px; border: 1px solid #951200;"
-                        );
-                        echo img($array);
-                    }
-                ?>
-            </td>
-            <td width="44%" style="vertical-align: top;">
-                <h2 style="margin:0;"> <strong><?php  echo $student->name; ?></strong></h2>
-                <p>
-                    <strong><?php  echo $this->lang->line("mark_classes")." ".$classes->classes; ?> </strong><br>
-                    <strong><?php  echo "AY: ".$academic_year->schoolyear; ?></strong>
-                </p>
-            </td>
-        </tr>
-      </table>
-
 
 <!--        mark new -->
-      <div class="row">
             <?php $subjectExamMarks = []; if($marks && $exams) { ?>
                 <?php
 
@@ -426,68 +423,96 @@
                             }
                         ?>
             <?php } ?>
+            <div style="display:table-cell;vertical-align: middle;">
+                <div width="70%" style="float:left">
+                    <table id="marks-table" width="100%"  style="text-align:center;position: inline-block; ">
+                        <thead>
+                            <tr >
+                                <th width="15%"  style="text-align:center;"><?=$this->lang->line('mark_subject')?></th>
+                                <?php
+                                    foreach ($exams as $exam) {
+                                        ?>
 
-            <h3 class="box-title"><?=$this->lang->line('mark_summary')?></h3>
-            <table width="100%" class="table-bordered">
-                <thead>
-                    <tr>
-                        <th><?=$this->lang->line('mark_subject')?></th>
-                        <?php
-                            foreach ($exams as $exam) {
+                                        <!--<th width="10%" colspan="2"><?php //$exam->exam?><span class="pull-right"><?php//$exam->percentage?>%</span></th>-->
+                                        <th width="12%"  style="text-align:center;"><?=$exam->exam?></th>
+                                        <?php
+                                    }
                                 ?>
-                                <th colspan="2"><?=$exam->exam?><span class="pull-right"><?=$exam->percentage?>%</span></th>
+                                <th width="12%"  style="text-align:center;"><?=$this->lang->line('mark_final')?></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                            $finalResultMark = 0;
+                            foreach ($subjectExamMarks as $mark) {
+                                ?>
+                                <tr >
+                                    <td data-title="<?=$this->lang->line('mark_subject')?>"><?=$mark['subject']?></td>
+                                    <?php
+                                        $subjectTotalExamFinalMark = 0;
+                                        foreach ($exams as $exam) {
+                                            ?>
+                                            <td data-title="<?=$exam->exam?>"><?php echo isset($mark['exams'][$exam->examID]['total']) ? $mark['exams'][$exam->examID]['total'] : ''?></td>
+                                            
+                                            <?php
+                                            $finalResultMark += isset($mark['exams'][$exam->examID]['total']) ? $mark['exams'][$exam->examID]['total'] : 0;
+                                        }
+                                    ?>
+                                    <td data-title="<?=$this->lang->line('mark_final')?>"><?=$subjectTotalExamFinalMark?></td>
+                                    
+                                </tr>
                                 <?php
                             }
                         ?>
-                        <th><?=$this->lang->line('mark_final')?></th>
-                        <th><?=$this->lang->line('mark_gk')?></th>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php
-                    $finalResultMark = 0;
-                    foreach ($subjectExamMarks as $mark) {
-                        ?>
-                        <tr>
-                            <td data-title="<?=$this->lang->line('mark_subject')?>"><?=$mark['subject']?></td>
-                            <?php
-                                $subjectTotalExamFinalMark = 0;
-                                foreach ($exams as $exam) {
-                                    ?>
-                                    <td data-title="<?=$exam->exam?>"><?php echo isset($mark['exams'][$exam->examID]['total']) ? $mark['exams'][$exam->examID]['total'] : ''?></td>
-                                    <td data-title="<?=$exam->percentage?>%">
-                                        <?php
-                                            if(isset($mark['exams'][$exam->examID]['mark_percentage'])) {
-                                                echo $mark['exams'][$exam->examID]['mark_percentage'];
-                                                $subjectTotalExamFinalMark += $mark['exams'][$exam->examID]['mark_percentage'];
-                                            }
-                                        ?>
-                                    </td>
-                                    <?php
-                                }
-                            ?>
-                            <td data-title="<?=$this->lang->line('mark_final')?>"><?=$subjectTotalExamFinalMark?></td>
-                            <td data-title="<?=$this->lang->line('mark_gk')?>">
-                                <?php
-                                    $finalResultMark += $subjectTotalExamFinalMark;
-                                    if(count($grades)) {
-                                        foreach ($grades as $grade) {
-                                            if($grade->gradefrom <= $subjectTotalExamFinalMark && $grade->gradeupto >= $subjectTotalExamFinalMark) {
-                                                echo '<span class="text-bold">'.$grade->grade.'</span>';
-                                                break;
-                                            }
-                                        }
-                                    }
-
-                                ?>
-                            </td>
-                        </tr>
-                        <?php
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div id="marks-table-notes-wrap">
+                    <div id="marks-table-notes">
+                        <p>-Total Marks is the sum of actual marks scored in all the subjects in a test.</p>
+                        <p>-Maximum Marks is the sum of maximum possible marks in all the subjects in a test.</p>
+                        <p>-Overall % is calculated as Total Marks/Maximum Marks in each test.</p>
+                        <p>-Result is 'PASS' if the student has scored at least the "% Required to Pass" 
+                            in each of the subjects in the test. Otherwise the Result is 'FAIL'.</p>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="black-line"></div>
+            <br>
+            <?php
+                    $totalSubject = count($subjectExamMarks);
+                    if($totalSubject) {
+                        $result = ceilCustom($finalResultMark/$totalSubject);
                     }
                 ?>
-                </tbody>
+            <table width="30%" style="text-align:center;color:red;">
+                <tr>
+                    <td><strong>Total Marks</strong></td>
+                    <td><strong><?=$finalResultMark?></strong></td>
+                </tr>
+                <tr>
+                    <td><strong>Maximum Marks</strong></td>
+                    <td><strong><?=$totalSubject?></strong></td>
+                </tr>
+                <tr>
+                    <td><strong>Overall %</strong></td>
+                    <td><strong><?=$result?>%</td>
+                </tr>
+            
             </table>
-            <br/>
+
+
+<?php print_r($highestMarks); ?>
+
+            <br>
+            <div class="black-line"></div>
+            <br>
+            
+                    
+            
+
             <div class="box-footer">
                 <?php
                     $totalSubject = count($subjectExamMarks);
