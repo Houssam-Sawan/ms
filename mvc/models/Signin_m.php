@@ -48,7 +48,7 @@ class signin_m extends MY_Model {
 				if(count($usertype)) {
 					if($userdata->active == 1) {
 						$data = array(
-							"loginuserID" => 1, //$userdata->$array['usercolname'],
+							"loginuserID" => $array['usercolname'],
 							"name" => $userdata->name,
 							"email" => $userdata->email,
 							"usertypeID" => $userdata->usertypeID,
@@ -61,8 +61,8 @@ class signin_m extends MY_Model {
 						);
 						$browser = $this->getBrowser();
 
-						$getPreviusData = $this->loginlog_m->get_single_loginlog(array('userID' => 1 /* $userdata->$array['usercolname']*/, 'usertypeID' => $userdata->usertypeID, 'ip' => $this->getUserIP(), 'browser' => $browser['name'], 'logout' => NULL));
-						$userdata->$array['usercolname'] = 1;
+						$getPreviusData = $this->loginlog_m->get_single_loginlog(array('userID' => $array['usercolname'], 'usertypeID' => $userdata->usertypeID, 'ip' => $this->getUserIP(), 'browser' => $browser['name'], 'logout' => NULL));
+						$array['usercolname'] = 1;
 						if(count($getPreviusData)) {
 							$lgoinLogUpdateArray = array(
 								'logout' => ($getPreviusData->login+(60*5))
@@ -77,7 +77,7 @@ class signin_m extends MY_Model {
 							'operatingsystem' => $browser['platform'],
 							'login' => strtotime(date('Ymdhis')),
 							'usertypeID' => $userdata->usertypeID,
-							'userID' => $userdata->$array['usercolname']
+							'userID' => $array['usercolname']
 						);
 						$this->loginlog_m->insert_loginlog($lgoinLog);
 						$this->session->set_userdata($data);
