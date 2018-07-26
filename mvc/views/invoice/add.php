@@ -179,11 +179,15 @@
                                 $array = array('0' => "Select Fee Type");
                                 //store fee type info in array
                                 $feetypes_info = array('0' => array("0", "Select Fee Type", "0", "0"));
-
+                                $i = 1;
                                 foreach ($feetypes as $fee) {
 
-                                    $array[$fee->feetypesID] = $fee->feetypes .'  ||  '. $fee->feeamount;
-                                    $feetypes_info[$fee->feetypesID] = array($fee->feetypesID, $fee->feetypes, $fee->feeamount, $fee->note);
+                                    //$array[$fee->feetypesID] = $fee->feetypes .'  ||  '. $fee->feeamount;
+                                    //$feetypes_info[$fee->feetypesID] = array($fee->feetypesID, $fee->feetypes, $fee->feeamount, $fee->note);
+                                    $array[$i] = $fee->feetypes .'  ||  '. $fee->feeamount;
+                                    $feetypes_info[$i] = array($fee->feetypesID, $fee->feetypes, $fee->feeamount, $fee->note);
+
+                                    $i++;
 
                                 }
 
