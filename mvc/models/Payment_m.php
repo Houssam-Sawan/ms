@@ -24,11 +24,13 @@ class Payment_m extends MY_Model {
 
 
 
-	function get_payment_with_studentrelation_by_studentID($studentID) {
+	function get_payment_with_studentrelation_by_studentID($studentID, $default_year) {
 
 		$this->db->select('payment.*, invoice.invoiceID, invoice.feetype, invoice.amount, studentrelation.*');
 
 		$this->db->from('payment');
+
+		$this->db->where('payment.schoolyearID',$default_year);
 
 		$this->db->join('studentrelation', 'studentrelation.srstudentID = payment.studentID AND studentrelation.srschoolyearID = payment.schoolyearID', 'LEFT');
 
@@ -44,11 +46,13 @@ class Payment_m extends MY_Model {
 
 
 
-	function get_payment_with_studentrelation() {
+	function get_payment_with_studentrelation($default_year) {
 
 		$this->db->select('payment.*, invoice.invoiceID, invoice.feetype, invoice.amount, studentrelation.*');
 
 		$this->db->from('payment');
+
+		$this->db->where('payment.schoolyearID',$default_year);
 
 		$this->db->join('studentrelation', 'studentrelation.srstudentID = payment.studentID AND studentrelation.srschoolyearID = payment.schoolyearID', 'LEFT');
 
