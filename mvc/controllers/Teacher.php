@@ -149,9 +149,11 @@ class Teacher extends Admin_Controller {
 			)
 		);
 		if($_POST) {
+			/*
 			if($this->tcode($this->data['siteinfos']->purchase_code, $this->data['siteinfos']->purchase_username, config_item('ini_version')) == FALSE) {
 				redirect(base_url('teacher/add'));
 			}
+			*/
 
 			$rules = $this->rules();
 			$this->form_validation->set_rules($rules);
