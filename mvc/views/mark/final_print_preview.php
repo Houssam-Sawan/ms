@@ -433,7 +433,6 @@
                                     foreach ($exams as $exam) {
                                         ?>
 
-                                        <!--<th width="10%" colspan="2"><?php //$exam->exam?><span class="pull-right"><?php//$exam->percentage?>%</span></th>-->
                                         <th width="12%"  style="text-align:center;"><?=$exam->exam?></th>
                                         <?php
                                     }
