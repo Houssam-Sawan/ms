@@ -104,6 +104,16 @@ class feetypes_m extends MY_Model {
 
 	}
 
+	function get_max_feeID(){
+
+		$this->db->select_max('feetypesID');
+		$query = $this->db->get('feetypes');
+
+		$arr = $query->result();
+
+		return $arr;
+	}
+
 }
 
 

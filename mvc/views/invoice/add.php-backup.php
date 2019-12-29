@@ -659,14 +659,12 @@ if(counts == 0) {
 
                 if(selected_fees[i] != null){
 
-                    var x = types_amounts[i][0];
-
                     fees_input += '<input type="number" id="f'+
-                                    x+
+                                    i+
                                     '" name="f'+
-                                    x+
+                                    i+
                                     '" value="'+
-                                    x+
+                                    i+
                                     '">';
 
                 }

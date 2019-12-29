@@ -23,6 +23,7 @@ class signin_m extends MY_Model {
 		$username = $this->input->post('username');
 		$password = $this->hash($this->input->post('password'));
 		$userdata = '';
+		$usernameid = '';// 'systemadminID';
 		foreach ($tables as $table) {
 			$user = $this->db->get_where($table, array("username" => $username, "password" => $password));
 			$alluserdata = $user->row();
@@ -30,6 +31,10 @@ class signin_m extends MY_Model {
 				$userdata = $alluserdata;
 				$array['permition'][$i] = 'yes';
 				$array['usercolname'] = $table.'ID';
+				$usernameid = $table.'ID';
+				//$array['loguserid'] = $alluserdata->$array['usercolname'];
+				//echo $array['loguserid']
+				//$userdata['logid'] =$alluserdata->$array['usercolname'];
 			} else {
 				$array['permition'][$i] = 'no';
 			}
@@ -48,7 +53,7 @@ class signin_m extends MY_Model {
 				if(count($usertype)) {
 					if($userdata->active == 1) {
 						$data = array(
-							"loginuserID" => $array['usercolname'],
+							"loginuserID" => $userdata->$usernameid,
 							"name" => $userdata->name,
 							"email" => $userdata->email,
 							"usertypeID" => $userdata->usertypeID,
@@ -60,16 +65,17 @@ class signin_m extends MY_Model {
 							"loggedin" => TRUE
 						);
 						$browser = $this->getBrowser();
-
-						$getPreviusData = $this->loginlog_m->get_single_loginlog(array('userID' => $array['usercolname'], 'usertypeID' => $userdata->usertypeID, 'ip' => $this->getUserIP(), 'browser' => $browser['name'], 'logout' => NULL));
-						$array['usercolname'] = 1;
+						//print_r($data);
+						$getPreviusData = $this->loginlog_m->get_single_loginlog(array('userID' => $userdata->$usernameid, 'usertypeID' => $userdata->usertypeID, 'ip' => $this->getUserIP(), 'browser' => $browser['name'], 'logout' => NULL));
+						//$array['usercolname'] = 1;
 						if(count($getPreviusData)) {
 							$lgoinLogUpdateArray = array(
 								'logout' => ($getPreviusData->login+(60*5))
 							);
 							$this->loginlog_m->update_loginlog($lgoinLogUpdateArray, $getPreviusData->loginlogID);
 						}
-
+						//echo $data['loginuserID'] . 'user data:';
+						//print_r($userdata);
 						
 						$lgoinLog = array(
 							'ip' => $this->getUserIP(),
@@ -77,7 +83,7 @@ class signin_m extends MY_Model {
 							'operatingsystem' => $browser['platform'],
 							'login' => strtotime(date('Ymdhis')),
 							'usertypeID' => $userdata->usertypeID,
-							'userID' => $array['usercolname']
+							'userID' => $data['loginuserID']
 						);
 						$this->loginlog_m->insert_loginlog($lgoinLog);
 						$this->session->set_userdata($data);

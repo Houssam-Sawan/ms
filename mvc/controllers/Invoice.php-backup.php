@@ -708,10 +708,6 @@ class Invoice extends Admin_Controller {
 
 		$this->data['feetypes'] = $this->feetypes_m->get_feetypes();
 
-		$max_fee_id = $this->feetypes_m->get_max_feeID();
-
-		$max_id_val =  (int) $max_fee_id[0]->feetypesID;
-echo 'max val:'.$max_id_val;
 		$classesID = $this->input->post("classesID");
 
 		if($classesID != 0) {
@@ -756,8 +752,8 @@ echo 'max val:'.$max_id_val;
 				$fees = array();
 
 				$fees_size = count($this->data['feetypes']);
-
-					for($i = 1 ; $i <= $max_id_val ; $i++){
+				
+					for($i = 1 ; $i <= $fees_size ; $i++){
 						$currp = $this->input->post('f'.$i);
 
 						if((int)$currp){
